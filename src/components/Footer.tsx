@@ -212,9 +212,21 @@ const Footer = () => {
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-gray-400">All systems operational</span>
               </div>
-              <div className="text-gray-400">
-                Built on <Link href="https://www.radixdlt.com/full-stack" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">Radix DLT</Link>
-              </div>
+              <Link 
+                href="https://www.radixdlt.com/full-stack" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-300"
+              >
+                <span className="text-gray-400 text-xs">Built on</span>
+                <Image
+                  src="/assets/images/Long-White-Monochrome-outline.png"
+                  alt="Radix DLT"
+                  width={80}
+                  height={24}
+                  className="h-5 w-auto opacity-90"
+                />
+              </Link>
             </div>
 
             <div className="flex items-center space-x-4">
