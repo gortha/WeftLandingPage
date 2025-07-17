@@ -1,0 +1,90 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: weft-landing
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: weft-finance
+  source:
+    repoURL: https://github.com/weftfinance/landing-page
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: weft-finance
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  revisionHistoryLimit: 10
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: weft-finance
+  namespace: argocd
+spec:
+  description: Weft Finance Applications
+  sourceRepos:
+  - 'https://github.com/weftfinance/*'
+  destinations:
+  - namespace: weft-finance
+    server: https://kubernetes.default.svc
+  - namespace: weft-finance-staging
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: networking.k8s.io
+    kind: Ingress
+  - group: cert-manager.io
+    kind: ClusterIssuer
+  namespaceResourceWhitelist:
+  - group: ''
+    kind: Service
+  - group: ''
+    kind: ConfigMap
+  - group: ''
+    kind: Secret
+  - group: ''
+    kind: ServiceAccount
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: ReplicaSet
+  - group: networking.k8s.io
+    kind: NetworkPolicy
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+  - group: policy
+    kind: PodDisruptionBudget
+  roles:
+  - name: weft-finance-admin
+    description: Admin access to Weft Finance applications
+    policies:
+    - p, proj:weft-finance:weft-finance-admin, applications, *, weft-finance/*, allow
+    - p, proj:weft-finance:weft-finance-admin, repositories, *, *, allow
+    - p, proj:weft-finance:weft-finance-admin, clusters, *, *, allow
+    groups:
+    - weft-finance:admin
+  - name: weft-finance-developer
+    description: Developer access to Weft Finance applications
+    policies:
+    - p, proj:weft-finance:weft-finance-developer, applications, get, weft-finance/*, allow
+    - p, proj:weft-finance:weft-finance-developer, applications, sync, weft-finance/*, allow
+    - p, proj:weft-finance:weft-finance-developer, repositories, get, *, allow
+    groups:
+    - weft-finance:developer

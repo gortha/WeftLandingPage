@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #00ff7f;
+  --secondary: #0066FF;
+  --accent: #ff6b35;
+  --radix: #40E0D0;
+  --weft-green: #00ff7f;
+  --weft-green-dark: #00cc66;
+  --weft-blue: #0066ff;
+  --weft-orange: #ff6b35;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #273349;
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Weft Finance V2 Design System - Updated with Official Colors */
+.weft-gradient {
+  background: linear-gradient(135deg, #00ff7f 0%, #0066FF 100%);
+}
+
+.weft-gradient-text {
+  background: linear-gradient(135deg, #00ff7f 0%, #0066FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.weft-gradient-text:hover {
+  background: linear-gradient(135deg, #00cc66 0%, #0052cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translateY(-1px);
+}
+
+/* Fallback for browsers that don't support background-clip */
+@supports not (-webkit-background-clip: text) {
+  .weft-gradient-text {
+    color: #00ff7f !important;
+  }
+  .weft-gradient-text:hover {
+    color: #00cc66 !important;
+  }
+}
+
+/* Ensure gradient text is visible in links and interactive elements */
+a .weft-gradient-text,
+button .weft-gradient-text,
+.weft-gradient-text {
+  -webkit-text-fill-color: transparent !important;
+}
+
+a:hover .weft-gradient-text,
+button:hover .weft-gradient-text {
+  background: linear-gradient(135deg, #00cc66 0%, #0052cc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.weft-gradient-accent {
+  background: linear-gradient(135deg, #ff6b35 0%, #00ff7f 100%);
+}
+
+.weft-gradient-accent-text {
+  background: linear-gradient(135deg, #ff6b35 0%, #00ff7f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.weft-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.weft-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.weft-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 102, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.weft-btn-primary {
+  background: linear-gradient(135deg, #00ff7f 0%, #0066FF 100%);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.weft-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 255, 127, 0.3);
+}
+
+.weft-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #00cc66 0%, #0052cc 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.weft-btn-primary:hover::before {
+  opacity: 0.3;
+}
+
+.weft-btn-secondary {
+  background: transparent;
+  color: #00ff7f;
+  border: 2px solid #00ff7f;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.weft-btn-secondary:hover {
+  background: #00ff7f;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 255, 127, 0.2);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 102, 255, 0.8);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .weft-btn-primary,
+  .weft-btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Swiper Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #0066FF !important;
+}
+
+.swiper-pagination-bullet {
+  background: #0066FF !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #9945FF !important;
+}
+
+/* Enhanced tablet responsiveness */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .weft-btn-primary, .weft-btn-secondary {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+  
+  .weft-card {
+    padding: 20px;
+  }
+}

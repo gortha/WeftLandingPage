@@ -1,0 +1,131 @@
+{
+  "name": "Weft Finance V2 - Advanced DeFi Lending Platform on Radix DLT",
+  "short_name": "Weft Finance",
+  "description": "Weft is a decentralized lending platform that harnesses the capabilities of Radix DLT to provide a fast, secure, and innovative approach to borrowing and lending assets. Create and manage collateralized debt positions (CDPs) encapsulated within NFTs called Wefties. Features V2 improvements: efficient position health checking, isolation mode, efficiency mode, and advanced collateral management including NFT collateral support.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#273349",
+  "theme_color": "#0066FF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "categories": ["finance", "business", "productivity", "defi", "blockchain", "radix", "lending", "borrowing"],
+  "shortcuts": [
+    {
+      "name": "Launch Weft App",
+      "short_name": "App",
+      "description": "Access the Weft Finance V2 lending and borrowing platform",
+      "url": "https://app.weft.finance/market",
+      "icons": [{ "src": "/icon.svg", "sizes": "32x32" }]
+    },
+    {
+      "name": "WEFT Token Staking",
+      "short_name": "Stake",
+      "description": "Stake WEFT tokens and participate in governance",
+      "url": "https://token.weft.finance",
+      "icons": [{ "src": "/icon.svg", "sizes": "32x32" }]
+    },
+    {
+      "name": "V2 Documentation",
+      "short_name": "Docs",
+      "description": "Learn about Weft Finance V2 features, isolation mode, and advanced collateral management",
+      "url": "https://docs.v2.weft.finance",
+      "icons": [{ "src": "/icon.svg", "sizes": "32x32" }]
+    },
+    {
+      "name": "Radix Ecosystem",
+      "short_name": "Radix",
+      "description": "Explore the Radix DLT ecosystem and Cerberus consensus",
+      "url": "https://www.radixdlt.com/full-stack",
+      "icons": [{ "src": "/icon.svg", "sizes": "32x32" }]
+    }
+  ],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://app.weft.finance/market",
+      "id": "weft-finance-app"
+    },
+    {
+      "platform": "web",
+      "url": "https://token.weft.finance",
+      "id": "weft-finance-token"
+    },
+    {
+      "platform": "web",
+      "url": "https://docs.v2.weft.finance",
+      "id": "weft-finance-docs"
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+weft",
+      "url": "/?weft=%s"
+    },
+    {
+      "protocol": "web+radix",
+      "url": "/?radix=%s"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/weft-dashboard.png",
+      "sizes": "1200x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Weft Finance Dashboard - Lending and Borrowing Overview"
+    },
+    {
+      "src": "/screenshots/weft-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Weft Finance Mobile Interface"
+    }
+  ],
+  "launch_date": "2023-11-30",
+  "features": [
+    "Collateralized Debt Positions (CDPs)",
+    "Wefties NFT-based position management",
+    "Multi-asset lending and borrowing",
+    "Isolation mode for risk management",
+    "Efficiency mode for capital optimization",
+    "Advanced collateral management",
+    "NFT collateral support",
+    "Radix DLT native integration",
+    "Cerberus consensus benefits",
+    "Scrypto smart contracts",
+    "Real-time position health monitoring",
+    "Dynamic loan-to-value ratios",
+    "Governance via WEFT token"
+  ],
+  "supported_assets": [
+    "XRD",
+    "LSULP",
+    "xUSDC",
+    "WEFT",
+    "Multiple Radix ecosystem tokens"
+  ]
+}
