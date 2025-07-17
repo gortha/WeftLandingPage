@@ -148,7 +148,93 @@ npm run lint
 npm run type-check
 ```
 
-## 📊 Performance Optimization
+## � GitHub Actions CI/CD Setup
+
+### Required Repository Secrets
+To enable automatic deployments via GitHub Actions, you need to configure these secrets in your repository:
+
+1. **Go to GitHub Repository Settings**
+   - Navigate to: `Settings` → `Secrets and variables` → `Actions`
+   - Click `New repository secret`
+
+2. **Add Required Secrets**
+   ```
+   VERCEL_TOKEN=your_vercel_token_here
+   VERCEL_ORG_ID=your_org_id_here
+   VERCEL_PROJECT_ID=your_project_id_here
+   ```
+
+### Getting Your Vercel Token
+1. Go to [Vercel Dashboard](https://vercel.com/account/tokens)
+2. Click "Create Token"
+3. Name it "GitHub Actions" 
+4. Copy the token value
+5. Add it as `VERCEL_TOKEN` in GitHub secrets
+
+### Getting Organization & Project IDs
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login to Vercel
+vercel login
+
+# Link your project (run in project root)
+vercel link
+
+# This will create .vercel/project.json with your IDs
+cat .vercel/project.json
+```
+
+The `.vercel/project.json` file contains:
+```json
+{
+  "orgId": "your_org_id_here",
+  "projectId": "your_project_id_here"
+}
+```
+
+### Workflow Status
+- **Production**: Deploys on push to `main` branch
+- **Preview**: Deploys on push to other branches
+- **Status**: Check in GitHub Actions tab
+
+### Troubleshooting CI/CD
+```bash
+# If deployment fails, check:
+# 1. All secrets are set correctly
+# 2. Vercel project is linked
+# 3. Build passes locally
+npm run build
+
+# Check Vercel CLI authentication
+vercel whoami
+
+# Run diagnostic script
+./diagnose-vercel.sh        # Linux/Mac
+./diagnose-vercel.ps1       # Windows
+```
+
+**Common Error: "No existing credentials found"**
+This error occurs when `VERCEL_TOKEN` is not set or invalid:
+1. Go to [Vercel Account Tokens](https://vercel.com/account/tokens)
+2. Create a new token named "GitHub Actions"
+3. Copy the token value
+4. Add it to GitHub secrets as `VERCEL_TOKEN`
+
+**Quick Fix Commands:**
+```bash
+# Set GitHub secrets using GitHub CLI
+gh secret set VERCEL_TOKEN
+gh secret set VERCEL_PROJECT_ID --body "your_project_id"
+gh secret set VERCEL_ORG_ID --body "your_org_id"
+
+# Or use the setup script
+./setup-github-secrets.sh   # Linux/Mac
+./setup-github-secrets.ps1  # Windows
+```
+
+## �📊 Performance Optimization
 
 ### Image Optimization
 - **Next.js Image**: Automatic optimization
