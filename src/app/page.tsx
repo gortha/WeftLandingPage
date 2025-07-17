@@ -8,13 +8,13 @@ import BuyWeftSection from '@/components/BuyWeftSection';
 import RadixIntegration from '@/components/RadixIntegration';
 import SocialLinks from '@/components/SocialLinks';
 import Footer from '@/components/Footer';
-import Web3Background from '@/components/Web3Background';
+import ClientWeb3Background from '@/components/ClientWeb3Background';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden">
       {/* Web3 Background Effects */}
-      <Web3Background />
+      <ClientWeb3Background />
       
       {/* Main Content */}
       <div className="relative z-10">

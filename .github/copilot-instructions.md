@@ -1,50 +1,60 @@
-# Weft Finance Landing Page - Copilot Instructions
-
-<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
+# Weft Finance V2 Landing Page - AI Instructions
 
 ## Project Overview
-This is a Next.js landing page for Weft Finance, a DeFi lending and borrowing platform built on Radix DLT. The project emphasizes modern Web3 design, enterprise compliance, and production-ready deployment.
+This is a Next.js 15 TypeScript application for Weft Finance V2 landing page, featuring Web3 animations, Radix DLT integration, and modern DeFi UI components.
 
-## Design System
-- Use Weft Finance V2 design system patterns
-- Modern Web3 crypto aesthetic with gradients and glass morphism
-- Color palette: Primary blues (#0066FF), secondary purples (#9945FF), accent greens (#00FF88)
-- Typography: Inter font family for clean, modern appearance
-- Responsive design with mobile-first approach
+## Key Technologies
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS with custom Weft design system
+- **Animations**: Framer Motion for smooth transitions
+- **Icons**: Lucide React for consistent iconography
+- **Web3 Elements**: Custom canvas animations and crypto-themed components
 
-## Key Features to Implement
-1. Hero section with platform overview
-2. Features showcase with animations
-3. Platform screenshots and video demos
-4. Staking information and WEFT token details
-5. Radix blockchain integration highlights
-6. Social media links (https://linktr.ee/weft)
-7. SEO optimization for search engines
-8. Enterprise-grade security and compliance
+## Architecture Patterns
 
-## Technical Stack
-- Next.js 14 with App Router
-- TypeScript for type safety
-- Tailwind CSS for styling
-- Framer Motion for animations
-- Lucide React for icons
-- Swiper for carousels/sliders
+### Component Structure
+- **Layout Components**: `Header`, `Footer` with responsive navigation
+- **Section Components**: `Hero`, `Features`, `PlatformOverview`, `StakingSection`, `BuyWeftSection`, `RadixIntegration`, `SocialLinks`
+- **Background Component**: `Web3Background` with canvas-based animations
+- **Page Structure**: Single-page application with all sections on home page
+
+### Styling System
+- **Design System**: Custom Weft V2 design with consistent color palette in `globals.css`
+- **Components**: `.weft-card`, `.weft-btn-primary`, `.weft-btn-secondary`
+- **Gradients**: `.weft-gradient`, `.weft-gradient-text` for brand consistency
+- **Animations**: Custom CSS animations with `animate-weft-*` classes
+
+## Development Workflow
+
+### Available Scripts
+```bash
+npm run dev          # Development with Turbopack
+npm run build        # Production build
+npm run start        # Start production server
+npm run lint         # ESLint checking
+npm run lint:fix     # Auto-fix linting issues
+npm run type-check   # TypeScript validation
+```
+
+### Key Files
+- `src/app/globals.css` - Custom design system and animations
+- `src/components/Web3Background.tsx` - Canvas-based crypto animations
+- `src/app/layout.tsx` - SEO metadata and root layout
+- `next.config.ts` - Optimization settings and security headers
+
+## Deployment
+- **Platform**: Vercel with automatic deployment on push to main
+- **Health Check**: `/api/health` endpoint for monitoring
+
+## Troubleshooting Hydration Issues
+Common causes of hydration mismatches in this project:
+1. **Framer Motion animations**: Use `viewport={{ once: true }}` to prevent re-animations
+2. **Canvas animations**: Ensure canvas elements are client-side only
+3. **Dynamic content**: Avoid time-based content in SSR components
+4. **Theme detection**: Use `useEffect` for client-side theme switching
 
 ## Brand Guidelines
-- Professional yet approachable tone
-- Focus on security, scalability, and user experience
-- Emphasize Radix blockchain advantages
-- Highlight DeFi innovation and accessibility
-
-## External Links
-- Main platform: https://app.weft.finance/market
-- Token platform: https://token.weft.finance
-- Social media: https://linktr.ee/weft
-- Radix information: https://www.radixdlt.com/full-stack
-
-## Code Quality
-- Use TypeScript strictly
-- Implement proper error handling
-- Follow Next.js best practices
-- Ensure accessibility compliance
-- Optimize for performance and SEO
+- **Primary Colors**: Weft green (#00ff7f), Radix blue (#0066FF)
+- **Typography**: Inter font family with gradient text effects
+- **Animations**: Smooth, Web3-themed with particle effects
+- **Responsive**: Mobile-first approach with progressive enhancement

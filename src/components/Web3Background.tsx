@@ -1,12 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 
 const Web3Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isClient, setIsClient] = useState(false);
-  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
 
   // Client-side animation data to prevent hydration mismatch
   const [animationData, setAnimationData] = useState({
@@ -28,28 +26,38 @@ const Web3Background = () => {
 
   useEffect(() => {
     setIsClient(true);
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
+    
+    // Only set dimensions and animation data after client-side hydration
+    const updateDimensions = () => {
+      // No need to store dimensions since we get them from canvas
+    };
 
-    // Generate stable random data for client-side animations
+    updateDimensions();
+
+    // Generate stable random data for client-side animations using seeded random
     const tokens = ['WEFT', 'XRD', 'LSULP', 'xUSDC', 'CDP', 'YIELD', 'STAKE', 'BORROW', 'LEND'];
+    
+    // Use a seeded random function to ensure consistent generation
+    let seed = 12345; // Fixed seed for reproducible results
+    const seededRandom = () => {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    };
     
     setAnimationData({
       connections: Array.from({ length: 20 }, () => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        width: Math.random() * 300 + 100,
-        rotation: Math.random() * 360,
-        delay: Math.random() * 5
+        left: seededRandom() * 100,
+        top: seededRandom() * 100,
+        width: seededRandom() * 300 + 100,
+        rotation: seededRandom() * 360,
+        delay: seededRandom() * 5
       })),
       dataElements: Array.from({ length: 15 }, () => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        delay: Math.random() * 8,
-        duration: Math.random() * 6 + 8,
-        token: tokens[Math.floor(Math.random() * tokens.length)]
+        left: seededRandom() * 100,
+        top: seededRandom() * 100,
+        delay: seededRandom() * 8,
+        duration: seededRandom() * 6 + 8,
+        token: tokens[Math.floor(seededRandom() * tokens.length)]
       }))
     });
   }, []);
@@ -65,12 +73,10 @@ const Web3Background = () => {
 
     // Set canvas size
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+      if (typeof window !== 'undefined') {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
     };
 
     resizeCanvas();
@@ -96,17 +102,24 @@ const Web3Background = () => {
       staking: '#40E0D0'     // Cyan for staking
     };
 
-    // Create Weft Finance nodes
+    // Use seeded random for consistent node generation
+    let nodeSeed = 54321;
+    const seededNodeRandom = () => {
+      nodeSeed = (nodeSeed * 9301 + 49297) % 233280;
+      return nodeSeed / 233280;
+    };
+
+    // Create Weft Finance nodes with seeded random
     const nodeTypes = ['wefty', 'cdp', 'radix', 'lending', 'borrowing', 'staking'] as const;
     for (let i = 0; i < 40; i++) {
-      const type = nodeTypes[Math.floor(Math.random() * nodeTypes.length)];
+      const type = nodeTypes[Math.floor(seededNodeRandom() * nodeTypes.length)];
       weftNodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: type === 'cdp' || type === 'wefty' ? Math.random() * 8 + 6 : Math.random() * 5 + 3,
+        x: seededNodeRandom() * canvas.width,
+        y: seededNodeRandom() * canvas.height,
+        size: type === 'cdp' || type === 'wefty' ? seededNodeRandom() * 8 + 6 : seededNodeRandom() * 5 + 3,
         type,
         color: weftColors[type],
-        pulsePhase: Math.random() * Math.PI * 2,
+        pulsePhase: seededNodeRandom() * Math.PI * 2,
         connectionDistance: type === 'radix' ? 150 : 100
       });
     }
@@ -123,17 +136,17 @@ const Web3Background = () => {
       type: 'loan' | 'repay' | 'yield' | 'collateral';
     }> = [];
 
-    // Create flow particles
+    // Create flow particles with seeded random
     for (let i = 0; i < 25; i++) {
       const types = ['loan', 'repay', 'yield', 'collateral'] as const;
-      const type = types[Math.floor(Math.random() * types.length)];
+      const type = types[Math.floor(seededNodeRandom() * types.length)];
       flowParticles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        targetX: Math.random() * canvas.width,
-        targetY: Math.random() * canvas.height,
-        speed: 0.5 + Math.random() * 1.5,
-        size: Math.random() * 3 + 1,
+        x: seededNodeRandom() * canvas.width,
+        y: seededNodeRandom() * canvas.height,
+        targetX: seededNodeRandom() * canvas.width,
+        targetY: seededNodeRandom() * canvas.height,
+        speed: 0.5 + seededNodeRandom() * 1.5,
+        size: seededNodeRandom() * 3 + 1,
         color: type === 'loan' ? '#0066FF' : 
                type === 'repay' ? '#00ff88' : 
                type === 'yield' ? '#9945FF' : '#40E0D0',
@@ -237,9 +250,9 @@ const Web3Background = () => {
           particle.x += (dx / distance) * particle.speed;
           particle.y += (dy / distance) * particle.speed;
         } else {
-          // Reached target, find new target
-          particle.targetX = Math.random() * canvas.width;
-          particle.targetY = Math.random() * canvas.height;
+          // Reached target, find new target using seeded random
+          particle.targetX = seededNodeRandom() * canvas.width;
+          particle.targetY = seededNodeRandom() * canvas.height;
         }
 
         // Draw particle trail
@@ -294,9 +307,11 @@ const Web3Background = () => {
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', resizeCanvas);
+      }
     };
-  }, []);
+  }, [isClient]);
 
   return (
     <>

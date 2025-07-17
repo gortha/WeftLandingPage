@@ -87,9 +87,6 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Output standalone for Docker
-  output: 'standalone',
-
   // Configure TypeScript
   typescript: {
     ignoreBuildErrors: false,

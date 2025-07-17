@@ -35,7 +35,7 @@ A modern, enterprise-grade landing page for Weft Finance V2, the advanced decent
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
 - **Components**: Swiper.js for carousels
-- **Deployment**: Docker, Kubernetes, ArgoCD
+- **Deployment**: Vercel
 
 ## 📦 Installation
 
@@ -108,49 +108,11 @@ npm run type-check
 │   └── lib/
 │       └── utils.ts           # Utility functions
 ├── public/                    # Static assets
-├── k8s/                       # Kubernetes manifests
 ├── .github/                   # GitHub workflows
-├── docker-compose.yml         # Docker compose
-├── Dockerfile                 # Docker configuration
 └── README.md
 ```
 
 ## 🌐 Deployment
-
-### Docker Deployment
-
-```bash
-# Build Docker image
-docker build -t weft-landing .
-
-# Run container
-docker run -p 3000:3000 weft-landing
-
-# Or use docker-compose
-docker-compose up -d
-```
-
-### Kubernetes Deployment
-
-```bash
-# Apply Kubernetes manifests
-kubectl apply -f k8s/
-
-# Check deployment status
-kubectl get pods -n weft-finance
-kubectl get services -n weft-finance
-kubectl get ingress -n weft-finance
-```
-
-### ArgoCD Deployment
-
-1. **Install ArgoCD** in your cluster
-2. **Apply the ArgoCD application**:
-   ```bash
-   kubectl apply -f k8s/argocd.yaml
-   ```
-3. **Configure your repository** in ArgoCD
-4. **Sync the application** through ArgoCD UI or CLI
 
 ### Production Checklist
 
@@ -177,11 +139,9 @@ The application includes comprehensive security headers:
 
 ### Best Practices
 
-- Docker image runs as non-root user
-- Kubernetes security contexts enforced
-- Network policies for pod-to-pod communication
-- Resource limits and requests configured
-- Pod disruption budgets for high availability
+- **Security Headers**: Comprehensive security headers enabled
+- **Performance**: Optimized build and bundle splitting
+- **Monitoring**: Health check endpoint available
 
 ## 📊 Performance
 

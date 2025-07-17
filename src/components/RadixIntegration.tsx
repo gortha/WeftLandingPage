@@ -4,12 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { 
-  Zap, 
-  Shield, 
-  Globe, 
-  Code, 
-  ArrowRight, 
+import {
+  Zap,
+  Shield,
+  Globe,
+  Code,
+  ArrowRight,
   ExternalLink,
   Atom,
   Layers,
@@ -82,7 +82,7 @@ const RadixIntegration = () => {
               Built on <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Radix DLT</span>
             </h2>
           </div>
-          
+
           {/* RunOnRadix Logo - Integrated into header */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -92,11 +92,64 @@ const RadixIntegration = () => {
             className="mb-6"
           >
           </motion.div>
-          
+
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Weft Finance V2 is built natively on Radix DLT with Scrypto smart contracts, 
+            Weft Finance V2 is built natively on Radix DLT with Scrypto smart contracts,
             leveraging Cerberus consensus and the world&apos;s first DeFi-optimized layer-1 protocol.
           </p>
+        </motion.div>
+
+        {/* Weft Node Validator */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="weft-card p-8 rounded-3xl">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl mb-4">
+                <Database className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">
+                Stake XRD with <span className="text-green-400">Weft Validator</span>
+              </h3>
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
+                Support the Radix network and earn rewards by staking your XRD tokens with the official Weft Finance validator node.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-400 mb-2">Secure</div>
+                <div className="text-sm text-gray-400">Enterprise-grade infrastructure</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-400 mb-2">Reliable</div>
+                <div className="text-sm text-gray-400">High uptime & performance</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-400 mb-2">Rewarding</div>
+                <div className="text-sm text-gray-400">Competitive staking rewards</div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Link
+                href="https://dashboard.radixdlt.com/network-staking/validator_rdx1sd6n65sx0thvfzfp6x0jp4qgwxtudpx575wpwqespdlva2wldul9xk/stake"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl text-white font-semibold hover:from-green-500 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25"
+              >
+                <span>Stake XRD Now</span>
+                <ExternalLink className="w-5 h-5" />
+              </Link>
+              <p className="text-xs text-gray-500 mt-3">
+                Validator ID: rdx1sd6n65sx0thvfzfp6x0jp4qgwxtudpx575wpwqespdlva2wldul9xk
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Radix Features */}
@@ -139,11 +192,11 @@ const RadixIntegration = () => {
               Next-Generation <span className="text-cyan-400">Technology</span>
             </h3>
             <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-              Radix DLT represents a fundamental breakthrough in blockchain technology, 
-              designed from the ground up to solve the limitations of traditional blockchains 
+              Radix DLT represents a fundamental breakthrough in blockchain technology,
+              designed from the ground up to solve the limitations of traditional blockchains
               for decentralized finance applications.
             </p>
-            
+
             <div className="space-y-6 mb-8">
               <div className="flex items-start space-x-4">
                 <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -154,7 +207,7 @@ const RadixIntegration = () => {
                   <p className="text-gray-400 text-sm">Pre-sharded, Byzantine fault-tolerant consensus for unlimited scalability</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
                   <Code className="w-4 h-4 text-cyan-400" />
@@ -164,7 +217,7 @@ const RadixIntegration = () => {
                   <p className="text-gray-400 text-sm">Asset-oriented programming language designed for DeFi</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
                   <Globe className="w-4 h-4 text-cyan-400" />
@@ -202,7 +255,7 @@ const RadixIntegration = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-8 p-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg border border-cyan-500/20">
                 <div className="text-center">
                   <div className="text-lg font-bold text-cyan-400 mb-2">Carbon Neutral</div>
@@ -253,59 +306,6 @@ const RadixIntegration = () => {
           </div>
         </motion.div>
 
-        {/* Weft Node Validator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="weft-card p-8 rounded-3xl">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl mb-4">
-                <Database className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">
-                Stake XRD with <span className="text-green-400">Weft Validator</span>
-              </h3>
-              <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
-                Support the Radix network and earn rewards by staking your XRD tokens with the official Weft Finance validator node.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-400 mb-2">Secure</div>
-                <div className="text-sm text-gray-400">Enterprise-grade infrastructure</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-400 mb-2">Reliable</div>
-                <div className="text-sm text-gray-400">High uptime & performance</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-400 mb-2">Rewarding</div>
-                <div className="text-sm text-gray-400">Competitive staking rewards</div>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="https://dashboard.radixdlt.com/network-staking/validator_rdx1sd6n65sx0thvfzfp6x0jp4qgwxtudpx575wpwqespdlva2wldul9xk/stake"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl text-white font-semibold hover:from-green-500 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25"
-              >
-                <span>Stake XRD Now</span>
-                <ExternalLink className="w-5 h-5" />
-              </Link>
-              <p className="text-xs text-gray-500 mt-3">
-                Validator ID: rdx1sd6n65sx0thvfzfp6x0jp4qgwxtudpx575wpwqespdlva2wldul9xk
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -319,7 +319,7 @@ const RadixIntegration = () => {
               Experience <span className="text-cyan-400">Radix-Powered</span> DeFi
             </h3>
             <p className="text-gray-300 mb-6 text-lg">
-              Join the future of decentralized finance with enterprise-grade security, 
+              Join the future of decentralized finance with enterprise-grade security,
               unlimited scalability, and intuitive user experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
