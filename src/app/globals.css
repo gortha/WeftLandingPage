@@ -137,6 +137,32 @@ button:hover .weft-gradient-text {
   opacity: 0.3;
 }
 
+/* Enhanced Launch App Button Effects */
+.weft-btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  border-radius: 50%;
+}
+
+.weft-btn-primary:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.weft-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 10px 30px rgba(0, 255, 127, 0.3),
+    0 0 40px rgba(0, 102, 255, 0.2);
+}
+
 .weft-btn-secondary {
   background: transparent;
   color: #00ff7f;
@@ -152,6 +178,87 @@ button:hover .weft-gradient-text {
   color: #000;
   transform: translateY(-2px);
   box-shadow: 0 20px 40px rgba(0, 255, 127, 0.2);
+}
+
+/* Navigation Menu Effects */
+.nav-item {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.nav-item:hover {
+  text-shadow: 0 0 20px rgba(0, 255, 127, 0.5);
+  transform: translateY(-1px);
+}
+
+.nav-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ff7f, #0066FF);
+  transform: translateX(-50%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:hover .nav-underline {
+  width: 100%;
+}
+
+.nav-glow {
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+  border-radius: 12px;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.3s ease;
+}
+
+.nav-item:hover .nav-glow {
+  opacity: 1;
+}
+
+/* Menu animation keyframes */
+@keyframes menuItemPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 127, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(0, 255, 127, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 127, 0);
+  }
+}
+
+.nav-item:hover {
+  text-shadow: 0 0 20px rgba(0, 255, 127, 0.5);
+  transform: translateY(-1px);
+  animation: menuItemPulse 1.5s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-item:hover {
+    animation: none;
+    transform: none;
+  }
 }
 
 /* Animations */

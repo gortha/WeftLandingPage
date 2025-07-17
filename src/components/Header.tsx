@@ -9,8 +9,11 @@ import { motion } from 'framer-motion';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -26,6 +29,64 @@ const Header = () => {
     { name: 'Radix', href: '#radix' },
     { name: 'Social', href: 'https://linktr.ee/weft', external: true },
   ];
+
+  // Render basic navigation for SSR, enhanced for client
+  const renderNavItem = (item: typeof navigation[0], mobile: boolean = false) => {
+    if (!isClient) {
+      // Simple SSR version
+      return (
+        <Link
+          key={item.name}
+          href={item.href}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+          className={`text-gray-300 hover:text-white transition-colors duration-200 flex items-center space-x-1 ${mobile ? 'py-3 px-4' : ''}`}
+          onClick={mobile ? () => setIsMenuOpen(false) : undefined}
+        >
+          <span>{item.name}</span>
+          {item.external && <ExternalLink className="w-3 h-3" />}
+        </Link>
+      );
+    }
+
+    // Enhanced client version
+    return (
+      <Link
+        key={item.name}
+        href={item.href}
+        target={item.external ? '_blank' : undefined}
+        rel={item.external ? 'noopener noreferrer' : undefined}
+        className={`relative group text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-1 ${
+          mobile 
+            ? 'py-3 px-4 rounded-lg hover:bg-white/5' 
+            : 'py-2 px-3 rounded-lg hover:bg-white/5'
+        }`}
+        onClick={mobile ? () => setIsMenuOpen(false) : undefined}
+      >
+        <span className="relative z-10">{item.name}</span>
+        {item.external && <ExternalLink className={`${mobile ? 'w-4 h-4' : 'w-3 h-3'} relative z-10`} />}
+        
+        {/* Hover effects only on client */}
+        {!mobile && (
+          <>
+            {/* Hover underline effect */}
+            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            
+            {/* Hover glow effect */}
+            <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
+          </>
+        )}
+        
+        {mobile && (
+          <>
+            {/* Mobile hover effect */}
+            <span className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-400 to-blue-500 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-r"></span>
+            <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+          </>
+        )}
+      </Link>
+    );
+  };
 
   return (
     <motion.header
@@ -65,18 +126,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center space-x-1"
-              >
-                <span>{item.name}</span>
-                {item.external && <ExternalLink className="w-3 h-3" />}
-              </Link>
-            ))}
+            {navigation.map((item) => renderNavItem(item, false))}
           </nav>
 
           {/* CTA Button */}
@@ -85,10 +135,15 @@ const Header = () => {
               href="https://app.weft.finance"
               target="_blank"
               rel="noopener noreferrer"
-              className="weft-btn-primary flex items-center space-x-2"
+              className={`weft-btn-primary flex items-center space-x-2 ${isClient ? 'relative group overflow-hidden' : ''}`}
             >
-              <span>Launch App</span>
-              <ExternalLink className="w-4 h-4" />
+              <span className="relative z-10">Launch App</span>
+              <ExternalLink className={`w-4 h-4 relative z-10 ${isClient ? 'group-hover:translate-x-1 transition-transform duration-300' : ''}`} />
+              
+              {/* Enhanced button glow on hover - only on client */}
+              {isClient && (
+                <span className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-md"></span>
+              )}
             </Link>
           </div>
 
@@ -114,19 +169,7 @@ const Header = () => {
             className="md:hidden py-4 border-t border-white/10"
           >
             <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  target={item.external ? '_blank' : undefined}
-                  rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center space-x-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <span>{item.name}</span>
-                  {item.external && <ExternalLink className="w-4 h-4" />}
-                </Link>
-              ))}
+              {navigation.map((item) => renderNavItem(item, true))}
               <Link
                 href="https://app.weft.finance/market"
                 target="_blank"
