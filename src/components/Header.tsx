@@ -18,9 +18,34 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
 
   const navigation = [
     { name: 'Platform', href: '#platform' },
@@ -82,7 +107,7 @@ const Header = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
@@ -145,25 +170,33 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden py-4 border-t border-white/10"
-          >
-            <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => renderNavItem(item, true))}
-              <Link
-                href="https://app.weft.finance/market"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="weft-btn-primary flex items-center justify-center space-x-2 mt-4"
-              >
-                <span>Launch App</span>
-                <ExternalLink className="w-4 h-4" />
-              </Link>
-            </nav>
-          </motion.div>
+          <>
+            {/* Overlay to close menu when clicking outside */}
+            <div 
+              className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 shadow-xl z-50"
+            >
+              <nav className="flex flex-col space-y-2 py-4 px-4">
+                {navigation.map((item) => renderNavItem(item, true))}
+                <Link
+                  href="https://app.weft.finance/market"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="weft-btn-primary flex items-center justify-center space-x-2 mt-4"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <span>Launch App</span>
+                  <ExternalLink className="w-4 h-4" />
+                </Link>
+              </nav>
+            </motion.div>
+          </>
         )}
       </div>
     </motion.header>

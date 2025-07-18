@@ -8,6 +8,14 @@
 - [x] **ESLint**: No linting errors
 - [x] **Performance**: Optimized bundle size (267KB shared JS)
 - [x] **SEO**: Meta tags and OpenGraph configured
+- [x] **Package Manager**: pnpm lockfile is up to date
+
+### Package Management
+- [x] **pnpm Support**: pnpm-workspace.yaml configured
+- [x] **Lock File**: pnpm-lock.yaml is committed
+- [x] **Dependencies**: All peer dependencies resolved
+- [x] **Cache**: pnpm store is optimized
+- [x] **Scripts**: All pnpm scripts work correctly
 
 ### Design & UX
 - [x] **Responsive Design**: Mobile, tablet, and desktop tested
@@ -32,7 +40,28 @@
 
 ## 🌐 Deployment Steps
 
-### 1. Final Build Test
+### Vercel with pnpm
+```bash
+# Install dependencies
+pnpm install
+
+# Build and test locally
+pnpm build && pnpm start
+
+# Deploy to Vercel
+vercel deploy --prod
+```
+
+### Docker with pnpm
+```bash
+# Build Docker image
+docker build -f Dockerfile.pnpm -t weft-finance-v2 .
+
+# Test container
+docker run -p 3000:3000 weft-finance-v2
+```
+
+### Legacy npm deployment
 ```bash
 # Clean build
 Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue
@@ -71,6 +100,13 @@ git push origin main
 - [ ] **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1
 - [ ] **Mobile Performance**: Mobile-first responsive design
 - [ ] **Asset Loading**: Images and fonts load optimally
+- [ ] **pnpm Benefits**: Faster builds and smaller node_modules
+
+### Package Manager Verification
+- [ ] **Install Speed**: Verify pnpm installs faster than npm
+- [ ] **Disk Usage**: Confirm reduced node_modules size
+- [ ] **Cache Efficiency**: Test pnpm store reuse
+- [ ] **Lock File**: Ensure pnpm-lock.yaml is used
 
 ### Functionality Tests
 - [ ] **Navigation**: All menu items and links work
@@ -163,13 +199,40 @@ npm run lint && npm run type-check
 npm run build && npm start
 ```
 
-## 📞 Support Resources
+## �️ Troubleshooting Guide
+
+### pnpm Specific Issues
+1. **Installation Problems**: Clear pnpm cache with `pnpm store prune`
+2. **Peer Dependencies**: Configure in `.npmrc` or package.json pnpm section
+3. **Monorepo Issues**: Check pnpm-workspace.yaml configuration
+4. **Cache Problems**: Remove `.pnpm-store` and reinstall
+
+### Debug Commands
+```bash
+# Check pnpm status
+pnpm --version
+
+# Verify workspace
+pnpm list --depth=0
+
+# Check for issues
+pnpm audit
+
+# Clean install
+pnpm clean:all && pnpm install
+
+# Build with pnpm
+pnpm build --verbose
+```
+
+## �📞 Support Resources
 
 ### Documentation
 - **Next.js**: https://nextjs.org/docs
 - **Vercel**: https://vercel.com/docs
 - **Weft Finance**: https://docs.v2.weft.finance
 - **Radix DLT**: https://docs.radixdlt.com
+- **pnpm**: https://pnpm.io/
 
 ### Community
 - **GitHub Issues**: Report bugs and feature requests
@@ -184,6 +247,7 @@ Your Weft Finance V2 landing page is now ready for production deployment with:
 
 ✅ **Modern Web3 Design** - Animated backgrounds and crypto UI  
 ✅ **Responsive Layout** - Mobile-first responsive design  
+✅ **pnpm Configuration** - Fast, efficient package management  
 ✅ **SEO Optimized** - Meta tags and structured data  
 ✅ **PWA Ready** - Manifest and service worker  
 ✅ **Production Built** - Optimized build and assets  

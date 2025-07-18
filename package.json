@@ -2,13 +2,22 @@
   "name": "weft-finance-landing",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next dist out",
+    "clean:all": "pnpm clean && rm -rf node_modules && rm -rf .pnpm-store",
+    "install:clean": "pnpm clean:all && pnpm install",
+    "analyze": "ANALYZE=true pnpm build"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -30,5 +39,17 @@
     "eslint-config-next": "15.4.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19",
+      "@types/react-dom": "^19"
+    },
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react",
+        "react-dom"
+      ]
+    }
   }
 }

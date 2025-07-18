@@ -39,6 +39,31 @@ A modern, enterprise-grade landing page for Weft Finance V2, the advanced decent
 
 ## 📦 Installation
 
+### Prerequisites
+
+- Node.js 18+
+- pnpm 8+ (recommended) or npm/yarn
+- Git
+
+### Installation
+
+#### Using pnpm (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/weftfinance/landing-page.git
+cd landing-page
+
+# Install pnpm globally if not already installed
+npm install -g pnpm
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+```
+
+#### Using npm
 ```bash
 # Clone the repository
 git clone https://github.com/weftfinance/landing-page.git
@@ -49,12 +74,69 @@ npm install
 
 # Run development server
 npm run dev
+```
+
+### Available Scripts
+
+#### pnpm Scripts (Recommended)
+```bash
+# Development server with hot reload
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
+
+# Run linting
+pnpm lint
+
+# Fix linting issues
+pnpm lint:fix
+
+# Run type checking
+pnpm type-check
+
+# Clean build artifacts
+pnpm clean
+
+# Clean everything including node_modules
+pnpm clean:all
+
+# Fresh install
+pnpm install:clean
+```
+
+#### npm Scripts
+```bash
+# Development server with hot reload
+npm run dev
 
 # Build for production
 npm run build
 
 # Start production server
 npm start
+
+# Run linting
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+
+# Run type checking
+npm run type-check
+```
+
+### Package Manager Performance Comparison
+
+| Feature | npm | pnpm | yarn |
+|---------|-----|------|------|
+| Install Speed | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| Disk Usage | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| Monorepo Support | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Lock File | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 ```
 
 ## 🔧 Development

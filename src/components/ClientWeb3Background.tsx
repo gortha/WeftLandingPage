@@ -1,14 +1,26 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import React from 'react';
+import { Suspense } from 'react';
 
-// Dynamically import Web3Background to prevent SSR hydration issues
-const Web3Background = dynamic(() => import('@/components/Web3Background'), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
-});
+// Fallback component
+const BackgroundFallback = () => (
+  <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 -z-10" />
+);
+
+// Chrome-safe dynamic import with proper error handling
+const Web3Background = dynamic(
+  () => import('@/components/Web3Background').catch(() => ({ default: BackgroundFallback })),
+  {
+    ssr: false,
+    loading: BackgroundFallback
+  }
+);
 
 export default function ClientWeb3Background() {
-  return <Web3Background />;
+  return (
+    <Suspense fallback={<BackgroundFallback />}>
+      <Web3Background />
+    </Suspense>
+  );
 }
