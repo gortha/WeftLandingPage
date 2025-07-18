@@ -26,30 +26,13 @@ const Header = () => {
     { name: 'Platform', href: '#platform' },
     { name: 'Features', href: '#features' },
     { name: 'Staking', href: '#staking' },
-    { name: 'Radix', href: '#radix' },
+    { name: 'Buy $WEFT', href: '#buy-weft' },
+    { name: 'Radix', href: '#radix' },    
     { name: 'Social', href: 'https://linktr.ee/weft', external: true },
   ];
 
-  // Render basic navigation for SSR, enhanced for client
+  // Render navigation item with consistent SSR/client structure
   const renderNavItem = (item: typeof navigation[0], mobile: boolean = false) => {
-    if (!isClient) {
-      // Simple SSR version
-      return (
-        <Link
-          key={item.name}
-          href={item.href}
-          target={item.external ? '_blank' : undefined}
-          rel={item.external ? 'noopener noreferrer' : undefined}
-          className={`text-gray-300 hover:text-white transition-colors duration-200 flex items-center space-x-1 ${mobile ? 'py-3 px-4' : ''}`}
-          onClick={mobile ? () => setIsMenuOpen(false) : undefined}
-        >
-          <span>{item.name}</span>
-          {item.external && <ExternalLink className="w-3 h-3" />}
-        </Link>
-      );
-    }
-
-    // Enhanced client version
     return (
       <Link
         key={item.name}
@@ -66,8 +49,8 @@ const Header = () => {
         <span className="relative z-10">{item.name}</span>
         {item.external && <ExternalLink className={`${mobile ? 'w-4 h-4' : 'w-3 h-3'} relative z-10`} />}
         
-        {/* Hover effects only on client */}
-        {!mobile && (
+        {/* Hover effects - only show on client to avoid hydration mismatch */}
+        {isClient && !mobile && (
           <>
             {/* Hover underline effect */}
             <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
@@ -77,7 +60,7 @@ const Header = () => {
           </>
         )}
         
-        {mobile && (
+        {isClient && mobile && (
           <>
             {/* Mobile hover effect */}
             <span className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-400 to-blue-500 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-r"></span>
@@ -135,10 +118,10 @@ const Header = () => {
               href="https://app.weft.finance"
               target="_blank"
               rel="noopener noreferrer"
-              className={`weft-btn-primary flex items-center space-x-2 ${isClient ? 'relative group overflow-hidden' : ''}`}
+              className="weft-btn-primary flex items-center space-x-2 relative group overflow-hidden"
             >
               <span className="relative z-10">Launch App</span>
-              <ExternalLink className={`w-4 h-4 relative z-10 ${isClient ? 'group-hover:translate-x-1 transition-transform duration-300' : ''}`} />
+              <ExternalLink className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
               
               {/* Enhanced button glow on hover - only on client */}
               {isClient && (

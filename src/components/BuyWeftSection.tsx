@@ -75,7 +75,7 @@ const BuyWeftSection = () => {
   };
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="buy-weft" className="relative py-20 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-green-900/20" />
       
