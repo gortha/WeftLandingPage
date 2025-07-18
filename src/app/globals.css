@@ -2,8 +2,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: 0 0% 100%;
-  /* --background:219, 40%, 16%; */
+  --background: 0 0% 100%;  
   --foreground: #ededed;
 
   --muted: 210 40% 96.1%;
@@ -19,8 +18,7 @@
   --card-foreground: #ededed;
 
   --primary: #ededed;
-  --primary-foreground: 210 40% 98%;
-  /* --primary-foreground: #273349; */
+  --primary-foreground: 210 40% 98%;  
 
   --secondary: 210 40% 96.1%;
   --secondary-foreground: #ededed;
