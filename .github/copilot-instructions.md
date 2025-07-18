@@ -54,7 +54,7 @@ Common causes of hydration mismatches in this project:
 4. **Theme detection**: Use `useEffect` for client-side theme switching
 
 ## Brand Guidelines
-- **Primary Colors**: Weft green (#00ff7f), Radix blue (#0066FF)
+- **Primary Colors**: Weft green (#5AFBC4), Radix blue (#0066FF)
 - **Typography**: Inter font family with gradient text effects
 - **Animations**: Smooth, Web3-themed with particle effects
 - **Responsive**: Mobile-first approach with progressive enhancement

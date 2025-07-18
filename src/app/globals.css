@@ -33,18 +33,21 @@
 
   --ring: 215 20.2% 65.1%;
 
-  --radius: 0.5rem;
+  --radius: 0.5rem; 
 
-  --yellowW100: #FBCE5A;
-  --purpleW100: #CD82CA;
-  --whiteW200: #C0C8D7;
+  --color-green-400: #5AFBC4;
+  --color-green-500: #1C595E;
 
   /* Weft Finance Brand Colors */
-  --weft-green: #00ff7f;
-  --weft-green-dark: #00cc66;
-  --weft-blue: #0066ff;
+  --yellowW100: #FBCE5A;
+  --purpleW100: #CD82CA;
+  --whiteW200: #C0C8D7;  
+  --blueW750: #012541;
+  --weft-green: #5AFBC4;
+  --weft-green-dark: #1C595E;
+  --weft-blue: #052CC0;
   --weft-orange: #ff6b35;
-  --radix: #40E0D0;
+  --radix: #060f8b;
 }
 
 .dark {
@@ -107,11 +110,11 @@ button {
 }
 
 .weft-gradient {
-  background: linear-gradient(135deg, #00ff7f 0%, #0066FF 100%);
+  background: linear-gradient(135deg, var(--weft-green) 0%, var(--weft-blue) 100%);
 }
 
 .weft-gradient-text {
-  background: linear-gradient(135deg, #00ff7f 0%, #0066FF 100%);
+  background: linear-gradient(135deg, var(--weft-green) 0%, var(--weft-blue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -121,7 +124,7 @@ button {
 }
 
 .weft-gradient-text:hover {
-  background: linear-gradient(135deg, #00cc66 0%, #0052cc 100%);
+  background: linear-gradient(135deg, var(--weft-green-dark) 0%, var(--blueW750) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -131,10 +134,10 @@ button {
 /* Fallback for browsers that don't support background-clip */
 @supports not (-webkit-background-clip: text) {
   .weft-gradient-text {
-    color: #00ff7f !important;
+    color: var(--weft-green) !important;
   }
   .weft-gradient-text:hover {
-    color: #00cc66 !important;
+    color: #1C595E !important;
   }
 }
 
@@ -148,18 +151,18 @@ button .weft-gradient-text,
 
 a:hover .weft-gradient-text,
 button:hover .weft-gradient-text {
-  background: linear-gradient(135deg, #00cc66 0%, #0052cc 100%);
+  background: linear-gradient(135deg, var(--weft-green-dark) 0%, var(--blueW750) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .weft-gradient-accent {
-  background: linear-gradient(135deg, #ff6b35 0%, #00ff7f 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, var(--weft-green) 100%);
 }
 
 .weft-gradient-accent-text {
-  background: linear-gradient(135deg, #ff6b35 0%, #00ff7f 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, var(--weft-green) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -186,7 +189,7 @@ button:hover .weft-gradient-text {
 }
 
 .weft-btn-primary {
-  background: linear-gradient(135deg, #00ff7f 0%, #0066FF 100%);
+  background: linear-gradient(135deg, var(--weft-green) 0%, var(--weft-blue) 100%);
   color: white;
   border: none;
   padding: 12px 32px;
@@ -209,7 +212,7 @@ button:hover .weft-gradient-text {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #00cc66 0%, #0052cc 100%);
+  background: linear-gradient(135deg, var(--weft-green-dark) 0%, var(--blueW750) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -246,8 +249,8 @@ button:hover .weft-gradient-text {
 
 .weft-btn-secondary {
   background: transparent;
-  color: #00ff7f;
-  border: 2px solid #00ff7f;
+  color: var(--weft-green);
+  border: 2px solid var(--weft-green);
   padding: 12px 32px;
   border-radius: 12px;
   font-weight: 600;
@@ -255,7 +258,7 @@ button:hover .weft-gradient-text {
 }
 
 .weft-btn-secondary:hover {
-  background: #00ff7f;
+  background: var(--weft-green);
   color: #000;
   transform: translateY(-2px);
   box-shadow: 0 20px 40px rgba(0, 255, 127, 0.2);
@@ -292,7 +295,7 @@ button:hover .weft-gradient-text {
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #00ff7f, #0066FF);
+  background: linear-gradient(90deg, var(--weft-green), var(--weft-blue));
   transform: translateX(-50%);
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -681,7 +684,7 @@ button:hover .weft-gradient-text {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: linear-gradient(45deg, #00ff7f, #0066FF);
+  background: linear-gradient(45deg, var(--weft-green), var(--weft-blue));
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
   animation: particleFloat 15s linear infinite;
@@ -845,10 +848,10 @@ button:hover .weft-gradient-text {
 
 @keyframes neonPulse {
   from {
-    text-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f, 0 0 30px #00ff7f;
+    text-shadow: 0 0 10px #5AFBC4, 0 0 20px #5AFBC4, 0 0 30px #5AFBC4;
   }
   to {
-    text-shadow: 0 0 20px #00ff7f, 0 0 30px #00ff7f, 0 0 40px #00ff7f;
+    text-shadow: 0 0 20px #5AFBC4, 0 0 30px #5AFBC4, 0 0 40px #5AFBC4;
   }
 }
 

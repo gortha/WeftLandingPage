@@ -6,6 +6,9 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    // textColor: {
+    //    'text-green-400': '#5AFBC4',
+    //  },
     extend: {
       fontFamily: {
         'roboto': ['var(--font-roboto)', 'Roboto', 'sans-serif'],
