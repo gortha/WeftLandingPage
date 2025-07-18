@@ -14,8 +14,8 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "clean": "rm -rf .next dist out",
-    "clean:all": "pnpm clean && rm -rf node_modules && rm -rf .pnpm-store",
+    "clean": "rd /s /q .next 2>nul || true",
+    "clean:all": "pnpm clean && rd /s /q node_modules 2>nul || true",
     "install:clean": "pnpm clean:all && pnpm install",
     "analyze": "ANALYZE=true pnpm build"
   },
@@ -26,6 +26,7 @@
     "next": "15.4.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-icons": "5.5.0",
     "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1"
   },

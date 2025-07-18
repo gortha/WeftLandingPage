@@ -3,23 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ExternalLink, Users, MessageCircle, BookOpen, Bell } from 'lucide-react';
+import { ExternalLink, Users, MessageCircle, BookOpen, Bell, TreePine } from 'lucide-react';
+import { FaDiscord, FaXTwitter, FaTelegram, FaMedium, FaGithub, FaYoutube } from 'react-icons/fa6';
 
 const SocialLinks = () => {
   const socialPlatforms = [
     {
-      name: 'Discord',
-      description: 'Join our community for real-time discussions and support',
-      members: '25K+',
-      icon: '💬',
-      color: 'from-indigo-500 to-purple-600',
-      href: 'https://discord.gg/weft'
-    },
-    {
       name: 'Twitter',
       description: 'Follow us for the latest updates and announcements',
       members: '45K+',
-      icon: '🐦',
+      icon: FaXTwitter,
       color: 'from-blue-400 to-blue-600',
       href: 'https://x.com/weft_finance'
     },
@@ -27,7 +20,7 @@ const SocialLinks = () => {
       name: 'Telegram',
       description: 'Connect with the global Weft Finance community',
       members: '18K+',
-      icon: '📱',
+      icon: FaTelegram,
       color: 'from-blue-500 to-cyan-500',
       href: 'https://t.me/weftfinance'
     },
@@ -35,7 +28,7 @@ const SocialLinks = () => {
       name: 'Medium',
       description: 'Read our latest articles and technical insights',
       members: '12K+',
-      icon: '📝',
+      icon: FaMedium,
       color: 'from-gray-600 to-gray-800',
       href: 'https://medium.com/@weft_finance'
     },
@@ -43,7 +36,7 @@ const SocialLinks = () => {
       name: 'GitHub',
       description: 'Explore our open-source code and contribute',
       members: '2.5K+',
-      icon: '💻',
+      icon: FaGithub,
       color: 'from-gray-700 to-gray-900',
       href: 'https://github.com/weftfinance'
     },
@@ -51,10 +44,18 @@ const SocialLinks = () => {
       name: 'YouTube',
       description: 'Watch tutorials, AMAs, and educational content',
       members: '8K+',
-      icon: '📺',
+      icon: FaYoutube,
       color: 'from-red-500 to-red-600',
       href: 'https://youtube.com/@weftfinance'
-    }
+    },
+    {
+      name: 'Discord',
+      description: 'Join our community for real-time discussions and support',
+      members: '25K+',
+      icon: FaDiscord,
+      color: 'from-indigo-500 to-purple-600',
+      href: 'https://discord.gg/weft'
+    },
   ];
 
   const communityStats = [
@@ -78,7 +79,7 @@ const SocialLinks = () => {
             Join Our <span className="weft-gradient-text">Community</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Connect with fellow DeFi enthusiasts, get support, and stay updated 
+            Connect with fellow DeFi enthusiasts, get support, and stay updated
             with the latest developments in the Weft Finance ecosystem.
           </p>
         </motion.div>
@@ -96,7 +97,7 @@ const SocialLinks = () => {
             >
               <div className="flex items-center mb-4">
                 <div className={`w-16 h-16 bg-gradient-to-r ${platform.color} rounded-2xl flex items-center justify-center text-2xl mr-4 group-hover:scale-110 transition-transform`}>
-                  {platform.icon}
+                  <platform.icon className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold group-hover:text-blue-400 transition-colors">
@@ -105,7 +106,7 @@ const SocialLinks = () => {
                   <div className="text-sm text-gray-400">{platform.members} members</div>
                 </div>
               </div>
-              
+
               <p className="text-gray-300 mb-6 leading-relaxed">
                 {platform.description}
               </p>
@@ -157,13 +158,13 @@ const SocialLinks = () => {
         >
           <div className="weft-card p-8 max-w-2xl mx-auto">
             <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-3xl">🌳</span>
+              <TreePine className="w-10 h-10 text-white" />
             </div>
             <h3 className="text-2xl font-bold mb-4">
               All Links in <span className="weft-gradient-text">One Place</span>
             </h3>
             <p className="text-gray-300 mb-6">
-              Access all our social media channels, resources, and important links 
+              Access all our social media channels, resources, and important links
               through our centralized Linktree page.
             </p>
             <Link
@@ -192,7 +193,7 @@ const SocialLinks = () => {
                 Stay <span className="weft-gradient-text">Updated</span>
               </h3>
               <p className="text-gray-300 mb-6">
-                Subscribe to our newsletter for the latest updates, feature announcements, 
+                Subscribe to our newsletter for the latest updates, feature announcements,
                 and exclusive insights from the Weft Finance team.
               </p>
               <div className="flex items-center space-x-4 text-sm text-gray-400">

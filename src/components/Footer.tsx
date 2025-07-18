@@ -4,24 +4,25 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowUpRight, Shield, Zap, Users, BookOpen } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, Shield, Zap, Users, BookOpen, Link as LinkIcon, BarChart3, Database } from 'lucide-react';
+import { FaDiscord, FaXTwitter, FaTelegram, FaMedium, FaGithub } from 'react-icons/fa6';
 
 const Footer = () => {
   const footerLinks = {
     Protocol: [
       { name: 'Launch App', href: 'https://app.weft.finance/market', isExternal: true },
       { name: 'Staking Portal', href: 'https://token.weft.finance', isExternal: true },
-      { name: 'Documentation', href: '/docs', isExternal: false },
+      { name: 'Documentation', href: 'https://docs.v2.weft.finance/', isExternal: false },
       { name: 'Whitepaper', href: '/whitepaper', isExternal: false },
       { name: 'Governance', href: '/governance', isExternal: false },
       { name: 'Audits', href: '/audits', isExternal: false }
     ],
     Community: [
-      { name: 'Discord', href: 'https://discord.gg/weft', isExternal: true },
       { name: 'Twitter', href: 'https://x.com/weft_finance', isExternal: true },
       { name: 'Telegram', href: 'https://t.me/weftfinance', isExternal: true },
       { name: 'Medium', href: 'https://medium.com/@weft_finance', isExternal: true },
       { name: 'GitHub', href: 'https://github.com/weftfinance', isExternal: true },
+      { name: 'Discord', href: 'https://discord.gg/weft', isExternal: true },
       { name: 'Linktree', href: 'https://linktr.ee/weft', isExternal: true }
     ],
     Resources: [
@@ -36,17 +37,17 @@ const Footer = () => {
       { name: 'About Us', href: '/about', isExternal: false },
       { name: 'Careers', href: '/careers', isExternal: false },
       { name: 'Press', href: '/press', isExternal: false },
-      { name: 'Terms of Service', href: '/terms', isExternal: false },
-      { name: 'Privacy Policy', href: '/privacy', isExternal: false },
+      { name: 'Terms of Service', href: 'https://docs.v2.weft.finance/term-condition', isExternal: false },
+      { name: 'Privacy Policy', href: 'https://docs.v2.weft.finance/privacy-policy', isExternal: false },
       { name: 'Cookie Policy', href: '/cookies', isExternal: false }
     ]
   };
 
   const techPartners = [
-    { name: 'Radix', logo: '🔗', href: 'https://www.radixdlt.com/full-stack' },
-    { name: 'Chainlink', logo: '🔗', href: 'https://chain.link' },
-    { name: 'The Graph', logo: '📊', href: 'https://thegraph.com' },
-    { name: 'Ceramic', logo: '🏺', href: 'https://ceramic.network' }
+    { name: 'Radix', icon: null, isImage: true, href: 'https://www.radixdlt.com/full-stack' },
+    { name: 'Chainlink', icon: LinkIcon, isImage: false, href: 'https://chain.link' },
+    { name: 'The Graph', icon: BarChart3, isImage: false, href: 'https://thegraph.com' },
+    { name: 'Ceramic', icon: Database, isImage: false, href: 'https://ceramic.network' }
   ];
 
   const quickStats = [
@@ -71,9 +72,9 @@ const Footer = () => {
                 viewport={{ once: true }}
               >
                 <div className="flex items-center space-x-3 mb-6">
-                  <Image 
-                    src="/assets/images/weft_green.svg" 
-                    alt="Weft Finance Logo" 
+                  <Image
+                    src="/assets/images/weft_green.svg"
+                    alt="Weft Finance Logo"
                     width={128}
                     height={41}
                     className="w-24 h-[31px] sm:w-32 sm:h-[41px]"
@@ -92,9 +93,9 @@ const Footer = () => {
                     <p className="text-xs sm:text-sm text-gray-400">DeFi. Simplified.</p>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  The next-generation DeFi platform built on Radix. Secure, 
+                  The next-generation DeFi platform built on Radix. Secure,
                   scalable, and user-friendly lending, borrowing, and staking solutions.
                 </p>
 
@@ -139,7 +140,7 @@ const Footer = () => {
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
                   <motion.div
-                    key={category}
+                    key={`footer-category-${category}`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
@@ -148,7 +149,7 @@ const Footer = () => {
                     <h4 className="text-lg font-bold text-white mb-6">{category}</h4>
                     <ul className="space-y-4">
                       {links.map((link, linkIndex) => (
-                        <li key={linkIndex}>
+                        <li key={`${category}-${linkIndex}-${link.name}`}>
                           <Link
                             href={link.href}
                             target={link.isExternal ? '_blank' : '_self'}
@@ -183,15 +184,25 @@ const Footer = () => {
             <p className="text-gray-400">Industry-leading infrastructure partners</p>
           </div>
           <div className="flex flex-wrap justify-center items-center gap-8">
-            {techPartners.map((partner, index) => (
+            {techPartners.map((partner) => (
               <Link
-                key={index}
+                key={`tech-partner-${partner.name}`}
                 href={partner.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-3 px-6 py-3 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-colors group"
               >
-                <span className="text-2xl">{partner.logo}</span>
+                {partner.isImage ? (
+                  <Image
+                    src="/assets/images/Radix-Icon-50x50.png"
+                    alt="Radix DLT"
+                    width={48}
+                    height={48}
+                    className="w-6 h-6"
+                  />
+                ) : partner.icon ? (
+                  React.createElement(partner.icon, { className: "w-6 h-6 text-blue-400" })
+                ) : null}
                 <span className="text-gray-300 group-hover:text-white transition-colors">
                   {partner.name}
                 </span>
@@ -206,16 +217,16 @@ const Footer = () => {
             <div className="text-gray-400 text-sm">
               © 2024 Weft Finance. All rights reserved.
             </div>
-            
+
             <div className="flex items-center space-x-6 text-sm">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-gray-400">All systems operational</span>
               </div>
-              <Link 
-                href="https://www.radixdlt.com/full-stack" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <Link
+                href="https://www.radixdlt.com/full-stack"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-300"
               >
                 <span className="text-gray-400 text-xs">Built on</span>
@@ -229,43 +240,26 @@ const Footer = () => {
               </Link>
             </div>
 
+            {/* Social Links */}
             <div className="flex items-center space-x-4">
-              <Link
-                href="https://discord.gg/weft"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Discord"
-              >
-                💬
-              </Link>
-              <Link
-                href="https://x.com/weft_finance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Twitter"
-              >
-                🐦
-              </Link>
-              <Link
-                href="https://t.me/weftfinance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Telegram"
-              >
-                📱
-              </Link>
-              <Link
-                href="https://github.com/weftfinance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="GitHub"
-              >
-                💻
-              </Link>
+              {[
+                { href: 'https://x.com/weft_finance', icon: FaXTwitter, label: 'Twitter' },
+                { href: 'https://t.me/weftfinance', icon: FaTelegram, label: 'Telegram' },
+                { href: 'https://medium.com/@weft_finance', icon: FaMedium, label: 'Medium' },
+                { href: 'https://github.com/weftfinance', icon: FaGithub, label: 'GitHub' },
+                { href: 'https://discord.gg/weft', icon: FaDiscord, label: 'Discord' }
+              ].map((social, index) => (
+                <Link
+                  key={`footer-social-${index}`}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
+                </Link>
+              ))}
             </div>
           </div>
         </div>

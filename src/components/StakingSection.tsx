@@ -237,10 +237,15 @@ const StakingSection = () => {
                 <span>Stake & Claim</span>
                 <ExternalLink className="w-4 h-4 flex-shrink-0" />
               </Link>
-              <button className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]">
+              <Link 
+                href="https://docs.v2.weft.finance/token#token-circulation-strategy"
+                target="_blank"
+                rel="noopener noreferrer" 
+                className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+              >
                 <span>View Tokenomics</span>
                 <ArrowRight className="w-4 h-4 flex-shrink-0" />
-              </button>
+              </Link>
             </div>
           </div>
 

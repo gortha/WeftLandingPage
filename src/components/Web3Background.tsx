@@ -7,7 +7,13 @@ const Web3Background = () => {
   const [mounted, setMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
-  const particlesRef = useRef<any[]>([]);
+  const particlesRef = useRef<Array<{
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    alpha: number;
+  }>>([]);
 
   // Stable initialization without Math.random in render
   const initializeParticles = useCallback((canvas: HTMLCanvasElement) => {

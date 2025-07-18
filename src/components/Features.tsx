@@ -14,6 +14,7 @@ import {
   CheckCircle,
   ArrowRight
 } from 'lucide-react';
+import Link from 'next/link';
 
 const Features = () => {
   const features = [
@@ -22,56 +23,64 @@ const Features = () => {
       title: 'Wefties NFT CDPs',
       description: 'Collateralized Debt Positions encapsulated within NFTs called Wefties. Trade, transfer, and manage your lending positions as unique digital assets.',
       color: 'from-green-400 to-green-600',
-      benefits: ['NFT-based positions', 'Tradeable CDPs', 'Unique ownership']
+      benefits: ['NFT-based positions', 'Tradeable CDPs', 'Unique ownership'],
+      learnMoreLink: 'https://docs.v2.weft.finance/intro/intro'
     },
     {
       icon: Zap,
       title: 'Isolation Mode',
       description: 'V2 isolation mode allows specific assets to be used as collateral in separate, risk-contained environments for enhanced security.',
       color: 'from-yellow-400 to-yellow-600',
-      benefits: ['Risk isolation', 'Asset protection', 'Enhanced security']
+      benefits: ['Risk isolation', 'Asset protection', 'Enhanced security'],
+      learnMoreLink: 'https://docs.v2.weft.finance/overview/isolation'
     },
     {
       icon: TrendingUp,
       title: 'Efficiency Mode',
       description: 'Optimized capital efficiency for correlated assets, allowing higher leverage and better utilization of your collateral.',
       color: 'from-blue-400 to-blue-600',
-      benefits: ['Higher leverage', 'Capital efficiency', 'Optimized yields']
+      benefits: ['Higher leverage', 'Capital efficiency', 'Optimized yields'],
+      learnMoreLink: 'https://docs.v2.weft.finance/overview/borrowing#efficient-borrowing'
     },
     {
       icon: Users,
       title: 'Advanced Collateral',
       description: 'Support for diverse collateral types including NFTs, LP tokens, and traditional crypto assets with dynamic risk assessment.',
       color: 'from-purple-400 to-purple-600',
-      benefits: ['NFT collateral', 'LP tokens', 'Dynamic pricing']
+      benefits: ['NFT collateral', 'LP tokens', 'Dynamic pricing'],
+      learnMoreLink: 'https://docs.v2.weft.finance/overview/borrowing#collateral-pools'
     },
     {
       icon: Lock,
       title: 'Position Health',
       description: 'Real-time position health monitoring with automated alerts and liquidation protection mechanisms.',
       color: 'from-red-400 to-red-600',
-      benefits: ['Real-time monitoring', 'Auto alerts', 'Liquidation protection']
+      benefits: ['Real-time monitoring', 'Auto alerts', 'Liquidation protection'],
+      learnMoreLink: 'https://docs.v2.weft.finance/overview/liquidation#health-factor'
     },
     {
       icon: Globe,
       title: 'Radix Native',
       description: 'Built natively on Radix DLT with Scrypto smart contracts, leveraging Cerberus consensus for unparalleled performance.',
       color: 'from-indigo-400 to-indigo-600',
-      benefits: ['Scrypto contracts', 'Cerberus consensus', 'Native integration']
+      benefits: ['Scrypto contracts', 'Cerberus consensus', 'Native integration'],
+      learnMoreLink: 'https://docs.v2.weft.finance/intro/intro#what-is-radix-dlt'
     },
     {
       icon: Coins,
       title: 'Multi-Asset Lending',
       description: 'Lend and borrow XRD, LSULP, xUSDC, WEFT, and other Radix ecosystem tokens with competitive rates.',
       color: 'from-cyan-400 to-cyan-600',
-      benefits: ['XRD lending', 'LSULP support', 'Competitive rates']
+      benefits: ['XRD lending', 'LSULP support', 'Competitive rates'],
+      learnMoreLink: 'https://docs.v2.weft.finance/overview/lending'
     },
     {
       icon: BarChart3,
       title: 'V2 Analytics',
       description: 'Comprehensive V2 dashboard with position analytics, yield tracking, and risk metrics for informed decision-making.',
       color: 'from-orange-400 to-orange-600',
-      benefits: ['V2 dashboard', 'Yield tracking', 'Risk analytics']
+      benefits: ['V2 dashboard', 'Yield tracking', 'Risk analytics'],
+      learnMoreLink: 'https://docs.v2.weft.finance/dev/liquidation-guide#_2-monitoring-cdp-health'
     }
   ];
 
@@ -127,10 +136,15 @@ const Features = () => {
               </div>
 
               <div className="mt-6 pt-4 border-t border-white/10">
-                <div className="flex items-center text-blue-400 text-sm font-medium group-hover:text-blue-300 transition-colors">
+                <Link 
+                  href={feature.learnMoreLink} 
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="flex items-center text-blue-400 text-sm font-medium group-hover:text-blue-300 transition-colors"
+                >
                   <span>Learn more</span>
                   <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
+                </Link>
               </div>
             </motion.div>
           ))}
