@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+});
+
+const roboto_mono = Roboto_Mono({
+  weight: ["100", "300", "400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+  variable: "--font-roboto-mono",
+});
 
 export const metadata: Metadata = {
   title: "Weft Finance V2 - Advanced DeFi Lending Platform on Radix DLT",
@@ -66,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth dark" style={{ fontFamily: `var(--font-roboto-mono)` }}>
       <head>
         <link rel="icon" href="/favicon.svg" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -75,7 +87,7 @@ export default function RootLayout({
         {/* <meta name="theme-color" content="#0066FF" /> */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
-      <body className={inter.className}>
+      <body className={`${roboto.variable} ${roboto_mono.variable}`}>
         {children}
       </body>
     </html>

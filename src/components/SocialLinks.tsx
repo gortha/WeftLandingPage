@@ -21,7 +21,7 @@ const SocialLinks = () => {
       members: '45K+',
       icon: '🐦',
       color: 'from-blue-400 to-blue-600',
-      href: 'https://twitter.com/weftfinance'
+      href: 'https://x.com/weft_finance'
     },
     {
       name: 'Telegram',
@@ -37,7 +37,7 @@ const SocialLinks = () => {
       members: '12K+',
       icon: '📝',
       color: 'from-gray-600 to-gray-800',
-      href: 'https://medium.com/@weftfinance'
+      href: 'https://medium.com/@weft_finance'
     },
     {
       name: 'GitHub',

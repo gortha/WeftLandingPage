@@ -18,9 +18,9 @@ const Footer = () => {
     ],
     Community: [
       { name: 'Discord', href: 'https://discord.gg/weft', isExternal: true },
-      { name: 'Twitter', href: 'https://twitter.com/weftfinance', isExternal: true },
+      { name: 'Twitter', href: 'https://x.com/weft_finance', isExternal: true },
       { name: 'Telegram', href: 'https://t.me/weftfinance', isExternal: true },
-      { name: 'Medium', href: 'https://medium.com/@weftfinance', isExternal: true },
+      { name: 'Medium', href: 'https://medium.com/@weft_finance', isExternal: true },
       { name: 'GitHub', href: 'https://github.com/weftfinance', isExternal: true },
       { name: 'Linktree', href: 'https://linktr.ee/weft', isExternal: true }
     ],
@@ -240,7 +240,7 @@ const Footer = () => {
                 💬
               </Link>
               <Link
-                href="https://twitter.com/weftfinance"
+                href="https://x.com/weft_finance"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"

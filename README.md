@@ -172,9 +172,9 @@ The application includes comprehensive security headers:
 ## 📱 Social Media
 
 - **Discord**: [https://discord.gg/weft](https://discord.gg/weft)
-- **Twitter**: [https://twitter.com/weftfinance](https://twitter.com/weftfinance)
+- **Twitter**: [https://x.com/weft_finance](https://x.com/weft_finance)
 - **Telegram**: [https://t.me/weftfinance](https://t.me/weftfinance)
-- **Medium**: [https://medium.com/@weftfinance](https://medium.com/@weftfinance)
+- **Medium**: [https://medium.com/@weft_finance](https://medium.com/@weft_finance)
 - **GitHub**: [https://github.com/weftfinance](https://github.com/weftfinance)
 
 ## 🤝 Contributing
