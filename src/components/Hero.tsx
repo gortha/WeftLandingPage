@@ -178,12 +178,12 @@ const Hero = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <button className="weft-btn-primary py-2 md:py-3 text-xs md:text-sm">
+                    <Link href="https://app.weft.finance/market/lending" target="_blank" className="weft-btn-primary flex items-center justify-center py-2 md:py-3 text-xs md:text-sm">
                       Supply More
-                    </button>
-                    <button className="weft-btn-secondary py-2 md:py-3 text-xs md:text-sm">
+                    </Link>
+                    <Link href="https://app.weft.finance/market/borrowing?tab=collateral" target="_blank" className="weft-btn-secondary flex items-center justify-center py-2 md:py-3 text-xs md:text-sm">
                       Borrow
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

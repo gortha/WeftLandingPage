@@ -6,7 +6,24 @@ const nextConfig: NextConfig = {
   
   // Enable optimized images
   images: {
-    domains: ['weft.finance', 'app.weft.finance', 'token.weft.finance', 'images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'weft.finance',
+      },
+      {
+        protocol: 'https',
+        hostname: 'app.weft.finance',
+      },
+      {
+        protocol: 'https',
+        hostname: 'token.weft.finance',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,

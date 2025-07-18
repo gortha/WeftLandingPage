@@ -4,29 +4,29 @@
 :root {
   --background: 0 0% 100%;
   /* --background:219, 40%, 16%; */
-  --foreground: 222.2 47.4% 11.2%;
+  --foreground: #ededed;
 
   --muted: 210 40% 96.1%;
   --muted-foreground: 215.4 16.3% 46.9%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 47.4% 11.2%;
+  --popover-foreground: #ededed;
 
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
 
   --card: 0 0% 100%;
-  --card-foreground: 222.2 47.4% 11.2%;
+  --card-foreground: #ededed;
 
-  --primary: 222.2 47.4% 11.2%;
+  --primary: #ededed;
   --primary-foreground: 210 40% 98%;
   /* --primary-foreground: #273349; */
 
   --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary-foreground: #ededed;
 
   --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent-foreground: #ededed;
 
   --destructive: 0 100% 50%;
   --destructive-foreground: 210 40% 98%;
@@ -72,7 +72,7 @@
   --primary: 210 40% 98%;
   --primary-foreground: 222.2 47.4% 1.2%;
 
-  --secondary: 222.2 47.4% 11.2%;
+  --secondary: #ededed;
   --secondary-foreground: 210 40% 98%;
 
   --destructive: 0 63% 31%;
@@ -95,13 +95,17 @@
   
   body {
     background: hsl(var(--background));
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     font-family: var(--font-roboto);
     min-height: 100vh;
   }
 }
 
 /* Weft Finance V2 Design System - Updated with Official Colors */
+button {
+    cursor: pointer;    
+}
+
 .weft-gradient {
   background: linear-gradient(135deg, #00ff7f 0%, #0066FF 100%);
 }
@@ -139,6 +143,7 @@ a .weft-gradient-text,
 button .weft-gradient-text,
 .weft-gradient-text {
   -webkit-text-fill-color: transparent !important;
+  cursor: pointer;
 }
 
 a:hover .weft-gradient-text,
