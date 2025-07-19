@@ -8,13 +8,7 @@ import BuyWeftSection from '@/components/BuyWeftSection';
 import RadixIntegration from '@/components/RadixIntegration';
 import SocialLinks from '@/components/SocialLinks';
 import Footer from '@/components/Footer';
-
-// Simple background component inline to avoid webpack issues
-const Web3Background = () => (
-  <div className="fixed inset-0 -z-10">
-    <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
-  </div>
-);
+import Web3Background from '@/components/Web3Background';
 
 export default function Home() {
   return (
