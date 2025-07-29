@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Shield, 
@@ -24,7 +25,8 @@ const Features = () => {
       description: 'Collateralized Debt Positions encapsulated within NFTs called Wefties. Trade, transfer, and manage your lending positions as unique digital assets.',
       color: 'from-green-400 to-green-600',
       benefits: ['NFT-based positions', 'Tradeable CDPs', 'Unique ownership'],
-      learnMoreLink: 'https://docs.v2.weft.finance/intro/intro'
+      learnMoreLink: 'https://docs.v2.weft.finance/intro/intro',
+      customIcon: true
     },
     {
       icon: Zap,
@@ -60,11 +62,12 @@ const Features = () => {
     },
     {
       icon: Globe,
-      title: 'Radix Native',
+      title: 'Built on Radix DLT',
       description: 'Built natively on Radix DLT with Scrypto smart contracts, leveraging Cerberus consensus for unparalleled performance.',
       color: 'from-indigo-400 to-indigo-600',
       benefits: ['Scrypto contracts', 'Cerberus consensus', 'Native integration'],
-      learnMoreLink: 'https://docs.v2.weft.finance/intro/intro#what-is-radix-dlt'
+      learnMoreLink: 'https://docs.v2.weft.finance/intro/intro#what-is-radix-dlt',
+      customIcon: true
     },
     {
       icon: Coins,
@@ -114,8 +117,26 @@ const Features = () => {
               whileHover={{ scale: 1.05 }}
               className="weft-card p-6 group cursor-pointer"
             >
-              <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className="w-8 h-8 text-white" />
+              <div className={`inline-flex items-center justify-center w-16 h-16 ${feature.customIcon && feature.title === 'Wefties NFT CDPs' ? 'rounded-2xl overflow-hidden' : feature.customIcon && feature.title === 'Built on Radix DLT' ? 'rounded-2xl overflow-hidden' : `bg-gradient-to-r ${feature.color} rounded-2xl`} mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                {feature.customIcon && feature.title === 'Wefties NFT CDPs' ? (
+                  <Image
+                    src="/assets/images/wefty.png"
+                    alt="Wefty NFT"
+                    width={64}
+                    height={64}
+                    className="object-cover w-full h-full rounded-2xl"
+                  />
+                ) : feature.customIcon && feature.title === 'Built on Radix DLT' ? (
+                  <Image
+                    src="/assets/images/Radix-Icon-50x50.png"
+                    alt="Built on Radix DLT"
+                    width={64}
+                    height={64}
+                    className="object-contain w-full h-full rounded-2xl p-2"
+                  />
+                ) : (
+                  <feature.icon className="w-8 h-8 text-white" />
+                )}
               </div>
               
               <h3 className="text-xl font-bold mb-4 group-hover:text-blue-400 transition-colors">

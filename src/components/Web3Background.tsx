@@ -1,12 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 
 const Web3Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isClient, setIsClient] = useState(false);
-  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
 
   // Client-side animation data to prevent hydration mismatch
   const [animationData, setAnimationData] = useState({
@@ -28,10 +26,6 @@ const Web3Background = () => {
 
   useEffect(() => {
     setIsClient(true);
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
 
     // Generate stable random data for client-side animations
     const tokens = ['WEFT', 'XRD', 'LSULP', 'xUSDC', 'CDP', 'YIELD', 'STAKE', 'BORROW', 'LEND'];
@@ -67,10 +61,6 @@ const Web3Background = () => {
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
     };
 
     resizeCanvas();
@@ -296,7 +286,7 @@ const Web3Background = () => {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [isClient]);
 
   return (
     <>

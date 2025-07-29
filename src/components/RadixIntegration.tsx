@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   Zap,
@@ -74,8 +75,14 @@ const RadixIntegration = () => {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mr-4">
-              <Atom className="w-8 h-8 text-white" />
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mr-4 overflow-hidden">
+              <Image
+                src="/assets/images/Radix-Icon-50x50.png"
+                alt="Radix DLT"
+                width={64}
+                height={64}
+                className="object-contain rounded-full w-full h-full"
+              />
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold">
               Built on <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Radix DLT</span>
@@ -266,7 +273,7 @@ const RadixIntegration = () => {
         </motion.div>
 
         {/* Network Visualization */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -303,7 +310,7 @@ const RadixIntegration = () => {
               </p>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Call to Action */}
         <motion.div

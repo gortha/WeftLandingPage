@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Coins, 
@@ -9,7 +10,6 @@ import {
   TrendingUp, 
   ShoppingCart,
   BarChart3,
-  Globe,
   ArrowRight,
   Sparkles
 } from 'lucide-react';
@@ -19,39 +19,75 @@ const BuyWeftSection = () => {
     {
       name: 'Caviar Nine',
       url: 'https://www.caviarnine.com',
-      icon: <Globe className="w-6 h-6" />,
+      logo: '/assets/images/Caviarnine-logo.svg',
       description: 'Decentralized exchange',
       type: 'DEX'
     },
     {
       name: 'DefiPlaza',
       url: 'https://defiplaza.net/',
-      icon: <TrendingUp className="w-6 h-6" />,
+      logo: '/assets/images/Defiplaza-logo.avif',
       description: 'Multi-chain DeFi platform',
       type: 'DEX'
     },
     {
       name: 'OciSwap',
       url: 'https://ociswap.com/resource_rdx1tk3fxrz75ghllrqhyq8e574rkf4lsq2x5a0vegxwlh3defv225cth3',
-      icon: <Coins className="w-6 h-6" />,
+      logo: '/assets/images/Ociswap-logo.svg',
       description: 'Radix native DEX',
       type: 'DEX'
     },
     {
       name: 'CoinGecko',
       url: 'https://www.coingecko.com/en/coins/weft-finance',
-      icon: <BarChart3 className="w-6 h-6" />,
+      logo: '/assets/images/CoinGecko-logo.svg',
       description: 'Market data & analytics',
       type: 'INFO'
     },
     {
       name: 'DefiLlama',
       url: 'https://defillama.com/protocol/weft-finance?fdv=true&staking=true&borrowed=true',
-      icon: <BarChart3 className="w-6 h-6" />,
+      logo: '/assets/images/defillama-logo.svg',
       description: 'DeFi analytics & metrics',
       type: 'INFO'
     }
   ];
+
+  // Function to get appropriate styling for each logo
+  const getLogoClassName = (exchangeName: string) => {
+    switch (exchangeName) {
+      case 'OciSwap':
+        return 'w-10 h-10 object-contain';
+      case 'Caviar Nine':
+        return 'w-10 h-10 object-contain';
+      case 'DefiPlaza':
+        return 'w-10 h-10 object-contain';
+      case 'CoinGecko':
+        return 'w-10 h-10 object-contain';
+      case 'DefiLlama':
+        return 'w-10 h-10 object-contain';
+      default:
+        return 'w-10 h-10 object-contain';
+    }
+  };
+
+  // Function to get container styling for each logo
+  const getContainerClassName = (exchangeName: string) => {
+    switch (exchangeName) {
+      case 'OciSwap':
+        return 'flex items-center justify-center w-12 h-12';
+      case 'Caviar Nine':
+        return 'flex items-center justify-center w-12 h-12';
+      case 'DefiPlaza':
+        return 'flex items-center justify-center w-12 h-12';
+      case 'CoinGecko':
+        return 'flex items-center justify-center w-12 h-12';
+      case 'DefiLlama':
+        return 'flex items-center justify-center w-12 h-12';
+      default:
+        return 'flex items-center justify-center w-12 h-12 bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-xl border border-gray-700/50 backdrop-blur-sm shadow-lg';
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -112,7 +148,13 @@ const BuyWeftSection = () => {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-400 to-purple-500 rounded-3xl mb-6 shadow-2xl">
-            <Sparkles className="w-10 h-10 text-white" />
+            <Image
+              src="/assets/images/weft-token.png"
+              alt="Weft Token"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
@@ -160,21 +202,23 @@ const BuyWeftSection = () => {
                 rel="noopener noreferrer"
                 className="block h-full"
               >
-                <div className="weft-card p-6 rounded-2xl h-full hover:scale-105 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-green-500/20">
+                <div className="weft-card p-6 rounded-2xl h-full hover:scale-105 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-green-500/20 border border-gray-700/30 bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-sm">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className={`p-3 rounded-xl ${
-                        exchange.type === 'DEX' 
-                          ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20' 
-                          : 'bg-gradient-to-r from-purple-500/20 to-blue-500/20'
-                      }`}>
-                        {exchange.icon}
+                    <div className="flex items-center space-x-4">
+                      <div className={getContainerClassName(exchange.name)}>
+                        <Image
+                          src={exchange.logo}
+                          alt={exchange.name}
+                          width={28}
+                          height={28}
+                          className={getLogoClassName(exchange.name)}
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white">
+                        <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
                           {exchange.name}
                         </h3>
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
                           {exchange.description}
                         </p>
                       </div>
