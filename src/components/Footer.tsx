@@ -6,8 +6,12 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowUpRight, Shield, Zap, Users, BookOpen, Link as LinkIcon, BarChart3, Database } from 'lucide-react';
 import { FaDiscord, FaXTwitter, FaTelegram, FaMedium, FaGithub } from 'react-icons/fa6';
+import { useTVLData } from '@/lib/hooks';
+import { formatCurrency } from '@/lib/utils';
 
 const Footer = () => {
+  const { data: tvlData, isLoading: isLoadingTVL } = useTVLData();
+
   const footerLinks = {
     Protocol: [
       { name: 'Launch App', href: 'https://app.weft.finance/market', isExternal: true },
@@ -51,9 +55,13 @@ const Footer = () => {
   ];
 
   const quickStats = [
-    { label: 'Total Value Locked', value: '$125M+', icon: Shield },
-    { label: 'Active Users', value: '50K+', icon: Users },
-    { label: 'Transactions', value: '2.5M+', icon: Zap },
+    { 
+      label: 'Total Value Locked', 
+      value: isLoadingTVL ? '...' : formatCurrency(tvlData?.currentTvl || '0'), 
+      icon: Shield 
+    },
+    { label: 'Active Users', value: '0+', icon: Users },
+    { label: 'Transactions', value: '150K+', icon: Zap },
     { label: 'Uptime', value: '99.9%', icon: BookOpen }
   ];
 

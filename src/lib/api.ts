@@ -121,14 +121,14 @@ export const fetchStakingData = async (): Promise<StakingData> => {
 
         // Calculate values with Decimal for precision    
         const totalStaked = new Decimal(data.staked || 40_300_000);
-        const apr = new Decimal(data.apr || 9.52);
+        const apr = new Decimal(data.apr || 0.0952).mul(100); // Convert to percentage
         const tvlUsd = new Decimal(data.tvl_usd || 70_100);
         const totalSupply = new Decimal(data.total_supply || 100_000_000);
         const percentageStaked = totalStaked.div(totalSupply).mul(100);
 
         return {
             totalStaked: formatTokenAmount(totalStaked, 'WEFT'),
-            stakingAPR: apr.toString(),
+            stakingAPR: formatPercentage(apr),
             TvlInUsd: formatCurrency(tvlUsd),
             activeStakers: formatNumber(data.total_stakers || 15_234),
             avgStakingTime: `~${(data.avg_staking_duration || 6.2).toFixed(1)} months`,

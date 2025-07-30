@@ -28,7 +28,7 @@ const StakingSection = () => {
       icon: TrendingUp,
       title: 'V2 Staking Rewards',
       description: 'Enhanced staking rewards with WEFT tokens in the V2 protocol',
-      value: stakingData ? `${formatDecimal(stakingData.stakingAPR, 1)}% APR` : '12% APR',
+      value: stakingData ? `${stakingData.stakingAPR} APR` : '12% APR',
       color: 'from-green-400 to-green-600'
     },
     {
@@ -289,7 +289,7 @@ const StakingSection = () => {
                     {isLoadingStaking ? (
                       <Loader2 className="w-6 h-6 animate-spin mr-2" />
                     ) : null}
-                    {stakingData ? `${formatDecimal(stakingData.stakingAPR, 1)}% APR` : '12% APR'}
+                    {stakingData ? `${stakingData.stakingAPR} APR` : '12% APR'}
                   </div>
                   <div className="text-gray-400">Staking Rewards</div>
                 </div>
