@@ -11,6 +11,9 @@ import Footer from '@/components/Footer';
 import Web3Background from '@/components/Web3Background';
 
 export default function Home() {
+  // For now, we'll use client-side fetching only to avoid Decimal serialization issues
+  // The TanStack Query setup is ready for SSR when we implement proper serialization
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden">
       {/* Web3 Background Effects */}

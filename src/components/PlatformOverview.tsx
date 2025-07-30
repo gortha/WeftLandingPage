@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { ArrowRight, Play, DollarSign, Wallet, BarChart3, Shield } from 'lucide-react';
+import { useTVLData } from '@/lib/hooks';
+import { formatCurrency } from '@/lib/utils';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -13,6 +15,7 @@ import 'swiper/css/pagination';
 
 const PlatformOverview = () => {
   const [activeDemo, setActiveDemo] = useState('wefties');
+  const { data: tvlData, isLoading: isLoadingTVL } = useTVLData();
 
   const platformFeatures = [
     {
@@ -253,11 +256,13 @@ const PlatformOverview = () => {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold weft-gradient-text mb-2">$12.5M+</div>
+              <div className="text-3xl font-bold weft-gradient-text mb-2">
+                {isLoadingTVL ? '...' : formatCurrency(tvlData?.currentTvl || '0')}
+              </div>
               <div className="text-gray-400">Total Value Locked</div>
             </div>
             <div>
-              <div className="text-3xl font-bold weft-gradient-text mb-2">25K+</div>
+              <div className="text-3xl font-bold weft-gradient-text mb-2">0</div>
               <div className="text-gray-400">Active Users</div>
             </div>
             <div>

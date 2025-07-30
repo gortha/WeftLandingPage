@@ -13,16 +13,22 @@ import {
   ArrowRight, 
   ExternalLink,
   Users,
-  Clock
+  Clock,
+  Loader2
 } from 'lucide-react';
+import { useStakingData, useTokenData } from '@/lib/hooks';
+import { formatDecimal, formatNumber, isPositive } from '@/lib/utils';
 
-const StakingSection = () => {
+const StakingSection = () => {  
+  const { data: stakingData, isLoading: isLoadingStaking } = useStakingData();
+  const { data: tokenData, isLoading: isLoadingToken } = useTokenData();
+
   const stakingFeatures = [
     {
       icon: TrendingUp,
       title: 'V2 Staking Rewards',
       description: 'Enhanced staking rewards with WEFT tokens in the V2 protocol',
-      value: '12% APY',
+      value: stakingData ? `${formatDecimal(stakingData.stakingAPR, 1)}% APR` : '12% APR',
       color: 'from-green-400 to-green-600'
     },
     {
@@ -50,10 +56,30 @@ const StakingSection = () => {
   ];
 
   const stakingStats = [
-    { label: 'Total Staked', value: '125M WEFT', icon: Coins },
-    { label: 'Active Stakers', value: '15,234', icon: Users },
-    { label: 'Avg Staking Time', value: '6.2 months', icon: Clock },
-    { label: 'Governance Proposals', value: '47', icon: Vote }
+    { 
+      label: 'Total Staked', 
+      value: stakingData ? stakingData.totalStaked : '125M WEFT', 
+      icon: Coins,
+      isLoading: isLoadingStaking
+    },
+    { 
+      label: 'Active Stakers', 
+      value: stakingData ? formatNumber(stakingData.activeStakers) : '15,234', 
+      icon: Users,
+      isLoading: isLoadingStaking
+    },
+    { 
+      label: 'Avg Staking Time', 
+      value: stakingData ? stakingData.avgStakingTime : '6.2 months', 
+      icon: Clock,
+      isLoading: isLoadingStaking
+    },
+    { 
+      label: 'Governance Proposals', 
+      value: stakingData ? stakingData.governanceProposals.toString() : '47', 
+      icon: Vote,
+      isLoading: isLoadingStaking
+    }
   ];
 
   return (
@@ -129,20 +155,56 @@ const StakingSection = () => {
             <div className="space-y-4 mb-8">
               <div className="flex items-center justify-between py-2 border-b border-white/10">
                 <span className="text-gray-400">Total Supply</span>
-                <span className="font-semibold">1,000,000,000 WEFT</span>
+                <span className="font-semibold flex items-center">
+                  {isLoadingToken ? (
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  ) : null}
+                  {tokenData ? tokenData.totalSupply : '1,000,000,000 WEFT'}
+                </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-white/10">
                 <span className="text-gray-400">Circulating Supply</span>
-                <span className="font-semibold">650,000,000 WEFT</span>
+                <span className="font-semibold flex items-center">
+                  {isLoadingToken ? (
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  ) : null}
+                  {tokenData ? tokenData.circulatingSupply : '650,000,000 WEFT'}
+                </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-white/10">
                 <span className="text-gray-400">Current Price</span>
-                <span className="font-semibold text-green-400">$2.45</span>
+                <span className="font-semibold text-green-400 flex items-center">
+                  {isLoadingToken ? (
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  ) : null}
+                  ${tokenData ? formatDecimal(tokenData.currentPrice, 4) : '0.001'}
+                  {tokenData && !isPositive(tokenData.priceChange24h) && (
+                    <span className={`ml-2 text-sm ${isPositive(tokenData.priceChange24h) ? 'text-green-400' : 'text-red-400'}`}>
+                      ({isPositive(tokenData.priceChange24h) ? '+' : ''}{formatDecimal(tokenData.priceChange24h, 4)}%)
+                    </span>
+                  )}
+                </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-white/10">
                 <span className="text-gray-400">Market Cap</span>
-                <span className="font-semibold">$1.59B</span>
+                <span className="font-semibold flex items-center">
+                  {isLoadingToken ? (
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  ) : null}
+                  {tokenData ? tokenData.marketCap : '$1.59B'}
+                </span>
               </div>
+              {tokenData && (
+                <div className="flex items-center justify-between py-2 border-b border-white/10">
+                  <span className="text-gray-400">Total Value Locked</span>
+                  <span className="font-semibold flex items-center">
+                    {isLoadingToken ? (
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                    ) : null}
+                    {tokenData.totalValueLocked}
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 max-w-md sm:max-w-none mx-auto">
@@ -175,7 +237,11 @@ const StakingSection = () => {
                 {stakingStats.map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-full mb-3">
-                      <stat.icon className="w-6 h-6 text-green-400" />
+                      {stat.isLoading ? (
+                        <Loader2 className="w-6 h-6 text-green-400 animate-spin" />
+                      ) : (
+                        <stat.icon className="w-6 h-6 text-green-400" />
+                      )}
                     </div>
                     <div className="text-xl font-bold text-white mb-1">{stat.value}</div>
                     <div className="text-sm text-gray-400">{stat.label}</div>
@@ -185,7 +251,12 @@ const StakingSection = () => {
               
               <div className="mt-8 p-4 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-lg border border-green-500/20">
                 <div className="text-center">
-                  <div className="text-2xl font-bold weft-gradient-text mb-2">62.5%</div>
+                  <div className="text-2xl font-bold weft-gradient-text mb-2 flex items-center justify-center">
+                    {isLoadingStaking ? (
+                      <Loader2 className="w-6 h-6 animate-spin mr-2" />
+                    ) : null}
+                    {stakingData && stakingData.percentageStaked}
+                  </div>
                   <div className="text-sm text-gray-400">of total supply staked</div>
                 </div>
               </div>
@@ -214,7 +285,12 @@ const StakingSection = () => {
             <div className="weft-card p-8 text-center">
               <div className="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
-                  <div className="text-3xl font-bold weft-gradient-text mb-2">12% APY</div>
+                  <div className="text-3xl font-bold weft-gradient-text mb-2 flex items-center justify-center">
+                    {isLoadingStaking ? (
+                      <Loader2 className="w-6 h-6 animate-spin mr-2" />
+                    ) : null}
+                    {stakingData ? `${formatDecimal(stakingData.stakingAPR, 1)}% APR` : '12% APR'}
+                  </div>
                   <div className="text-gray-400">Staking Rewards</div>
                 </div>
                 <div>
@@ -241,16 +317,6 @@ const StakingSection = () => {
                   <span className="text-gray-300">Exclusive community events</span>
                 </div>
               </div>
-
-              {/* <Link
-                href="https://token.weft.finance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="weft-btn-primary inline-flex items-center space-x-2"
-              >
-                <span>Start Staking</span>
-                <ExternalLink className="w-5 h-5" />
-              </Link> */}
             </div>
           </div>
         </motion.div>
@@ -277,13 +343,12 @@ const StakingSection = () => {
                   href="https://token.weft.finance"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center space-x-4 px-12 py-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full text-white font-bold text-2xl hover:from-green-500 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/40 relative overflow-hidden"
+                  className="inline-flex items-center justify-center space-x-2 px-10 py-5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl text-white font-semibold hover:from-green-500 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative">Start Staking Now</span>
-                  <ExternalLink className="w-7 h-7 relative group-hover:translate-x-1 transition-transform duration-300" />
+                  <span>Stake WEFT Now</span>
+                  <ExternalLink className="w-5 h-5" />
                 </Link>
-                <p className="text-gray-500 text-lg">Join 15,000+ stakers • Secure • Decentralized</p>
+                <p className="text-gray-500 text-sm sm:text-base lg:text-lg">Join 15,000+ stakers • Secure • Decentralized</p>
               </div>
             </div>
           </div>

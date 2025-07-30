@@ -1,18 +1,50 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Play, TrendingUp, Shield, Zap, Users, ExternalLink, X } from 'lucide-react';
+import { ArrowRight, Play, TrendingUp, Shield, Zap, Users, ExternalLink, X, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTVLData, usePoolData, useStakingData } from '@/lib/hooks';
+import { formatCurrency, formatDecimal, formatNumber, isPositive } from '@/lib/utils';
 
 const Hero = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Fetch dynamic data from store
+  const { data: tvlData, isLoading: isLoadingTVL } = useTVLData();
+  const { data: poolData, isLoading: isLoadingPool } = usePoolData();
+  const { data: stakingData, isLoading: isLoadingStaking } = useStakingData();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const stats = [
-    { label: 'Total Value Locked', value: '$50M+', icon: TrendingUp },
-    { label: 'Wefties NFT CDPs', value: '15K+', icon: Users },
-    { label: 'Supported Assets', value: '25+', icon: Zap },
-    { label: 'V2 Features', value: '100%', icon: Shield },
+    { 
+      label: 'Total Value Locked', 
+      value: isClient && tvlData && tvlData.currentTvl ? formatCurrency(tvlData.currentTvl) : '$50M+', 
+      icon: TrendingUp,
+      isLoading: isClient && isLoadingTVL
+    },
+    { 
+      label: 'Active Stakers', 
+      value: isClient && stakingData && stakingData.activeStakers ? `${formatNumber(stakingData.activeStakers)}+` : '15K+', 
+      icon: Users,
+      isLoading: isClient && isLoadingStaking
+    },
+    { 
+      label: 'Supported Assets', 
+      value: '20+', 
+      icon: Zap,
+      isLoading: false
+    },
+    { 
+      label: 'V2 Features', 
+      value: '100%', 
+      icon: Shield,
+      isLoading: false
+    },
   ];
 
   const floatingElements = [
@@ -51,7 +83,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -60,7 +92,7 @@ const Hero = () => {
               <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-500/20 text-green-300 border border-green-500/30">
                 🚀 Weft Finance V2 - Now Live on Radix DLT
               </span>
-            </motion.div>
+            </motion.div> */}
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -124,7 +156,11 @@ const Hero = () => {
                 >
                   <div className="weft-card p-3 md:p-4 mb-2">
                     <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 weft-gradient rounded-full mx-auto mb-2 md:mb-3">
-                      <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                      {stat.isLoading ? (
+                        <Loader2 className="w-5 h-5 md:w-6 md:h-6 text-white animate-spin" />
+                      ) : (
+                        <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                      )}
                     </div>
                     <div className="text-xl md:text-2xl font-bold text-white mb-1">{stat.value}</div>
                     <div className="text-xs md:text-sm text-gray-400">{stat.label}</div>
@@ -149,32 +185,55 @@ const Hero = () => {
               <div className="relative weft-card p-8 rounded-3xl">
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="text-xl font-semibold text-white">Portfolio Overview</div>
-                    <div className="text-green-400 text-sm font-semibold">+15.2%</div>
+                    <div className="text-xl font-semibold text-white">Platform Overview</div>
+                    <div className="text-green-400 text-sm font-semibold flex items-center">
+                      {isClient && isLoadingTVL ? (
+                        <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                      ) : isClient && tvlData && tvlData.currentTvl && typeof tvlData.currentTvl === 'number' && tvlData.currentTvl !== 0 ? (
+                        `${isPositive(tvlData.currentTvl) ? '+' : ''}${formatDecimal(tvlData.currentTvl, 1)}%`
+                      ) : (
+                        '+15.2%'
+                      )}
+                    </div>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white/5 p-4 rounded-xl border border-white/10">
                       <div className="text-sm text-gray-400 mb-1">Total Supplied</div>
-                      <div className="text-2xl font-bold text-white">$45,230</div>
-                      <div className="text-green-400 text-sm">↗ 8.5% APY</div>
+                      <div className="text-2xl font-bold text-white flex items-center">
+                        {isClient && isLoadingPool ? (
+                          <Loader2 className="w-6 h-6 animate-spin mr-2" />
+                        ) : null}
+                        {isClient && poolData ? poolData.totalSupplied : '$45,230'}
+                      </div>
+                      <div className="text-green-400 text-sm">↗ {isClient && poolData && poolData.lendingApr ? poolData.lendingApr : '8.5%'} APR</div>
                     </div>
                     <div className="bg-white/5 p-4 rounded-xl border border-white/10">
                       <div className="text-sm text-gray-400 mb-1">Total Borrowed</div>
-                      <div className="text-2xl font-bold text-white">$22,150</div>
-                      <div className="text-blue-400 text-sm">↘ 3.2% APY</div>
+                      <div className="text-2xl font-bold text-white flex items-center">
+                        {isClient && isLoadingPool ? (
+                          <Loader2 className="w-6 h-6 animate-spin mr-2" />
+                        ) : null}
+                        {isClient && poolData ? poolData.totalBorrowed : '$22,150'}
+                      </div>
+                      <div className="text-blue-400 text-sm">↗ {isClient && poolData && poolData.borrowingApr ? poolData.borrowingApr : '3.2%'} APY</div>
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">Health Factor</span>
-                      <span className="text-green-400 font-semibold">2.84</span>
+                      <span className="text-sm text-gray-400">Total Value Locked</span>
+                      <span className="text-green-400 font-semibold flex items-center">
+                        {isClient && isLoadingTVL ? (
+                          <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                        ) : null}
+                        {isClient && tvlData && tvlData.currentTvl ? formatCurrency(tvlData.currentTvl) : '$2.1B'}
+                      </span>
                     </div>
                     <div className="w-full bg-gray-700/50 rounded-full h-2">
                       <div className="bg-gradient-to-r from-green-500 to-green-400 h-2 rounded-full" style={{ width: '85%' }}></div>
                     </div>
-                    <div className="text-xs text-gray-500">Liquidation risk: Very Low</div>
+                    <div className="text-xs text-gray-500">Platform growth: Strong</div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">

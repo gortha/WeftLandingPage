@@ -10,8 +10,7 @@ import {
   TrendingUp, 
   ShoppingCart,
   BarChart3,
-  ArrowRight,
-  Sparkles
+  ArrowRight
 } from 'lucide-react';
 
 const BuyWeftSection = () => {
