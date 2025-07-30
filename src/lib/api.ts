@@ -40,6 +40,20 @@ export interface PoolApiResponse {
     totalLoan?: string;
     borrowingApr?: number;
     rawLendingApr?: number; // Added for raw lending APR
+    resourceAddress?: string; // Added for token identification
+}
+
+export interface AstrolescentTokenPrice {
+    address: string;
+    symbol: string;
+    name: string;
+    tokenPriceXRD: number;
+    tokenPriceUSD: number;
+    [key: string]: any; // For other properties we don't need
+}
+
+export interface AstrolescentApiResponse {
+    [resourceAddress: string]: AstrolescentTokenPrice;
 }
 
 export interface PoolData {
@@ -83,6 +97,7 @@ export interface DeFiLlamaResponse {
 
 export interface TVLData {
     currentTvl: string;
+    tvlChange24h: Decimal;
 }
 
 // Utility functions for data formatting with Decimal.js
@@ -103,6 +118,30 @@ const formatTokenAmount = (value: Decimal | number, symbol: string = ''): string
 };
 
 // API Functions
+
+// Fetch token prices from Astrolescent API
+export const fetchTokenPrices = async (): Promise<AstrolescentApiResponse> => {
+    try {
+        const response = await fetch('https://api.astrolescent.com/partner/R96v1uADor/prices', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            },
+            cache: 'no-store',
+        });
+        if (!response.ok) {
+            throw new Error(`Astrolescent API error: ${response.status}`);
+        }
+
+        const data: AstrolescentApiResponse = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching token prices:', error);
+        // Return empty object as fallback
+        return {};
+    }
+};
+
 export const fetchStakingData = async (): Promise<StakingData> => {
     try {
         const response = await fetch('https://api.weft.finance/staking', {
@@ -152,19 +191,24 @@ export const fetchStakingData = async (): Promise<StakingData> => {
 
 export const fetchPoolData = async (): Promise<PoolData> => {
     try {
-        const response = await fetch('https://api.weft.finance/pool', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            cache: 'no-store',
-        });
-        if (!response.ok) {
-            throw new Error(`Pool API error: ${response.status}`);
+        // Fetch both pool data and token prices in parallel
+        const [poolResponse, pricesData] = await Promise.all([
+            fetch('https://api.weft.finance/pool', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                cache: 'no-store',
+            }),
+            fetchTokenPrices()
+        ]);
+
+        if (!poolResponse.ok) {
+            throw new Error(`Pool API error: ${poolResponse.status}`);
         }
 
-        const rawData = await response.json();
+        const rawData = await poolResponse.json();
 
         // Handle both array and single object responses
         let data: PoolApiResponse[];
@@ -175,21 +219,35 @@ export const fetchPoolData = async (): Promise<PoolData> => {
             data = [rawData];
         }
 
-        // Calculate values with Decimal for precision
+        // Calculate values with Decimal for precision, converting to USD using prices
         const totalSupplied = data.reduce((sum, pool) => {
-            const deposit = pool.totalDeposit ? new Decimal(pool.totalDeposit) : new Decimal(0);
-            return sum.add(deposit);
+            const depositAmount = pool.totalDeposit ? new Decimal(pool.totalDeposit) : new Decimal(0);
+            
+            // Get USD price for this resource address
+            const tokenPrice = pool.resourceAddress && pricesData[pool.resourceAddress] 
+                ? new Decimal(pricesData[pool.resourceAddress].tokenPriceUSD)
+                : new Decimal(0);
+            
+            const usdValue = depositAmount.mul(tokenPrice);
+            return sum.add(usdValue);
         }, new Decimal(0));
 
         const totalBorrowed = data.reduce((sum, pool) => {
-            const loan = pool.totalLoan ? new Decimal(pool.totalLoan) : new Decimal(0);
-            return sum.add(loan);
+            const loanAmount = pool.totalLoan ? new Decimal(pool.totalLoan) : new Decimal(0);
+            
+            // Get USD price for this resource address
+            const tokenPrice = pool.resourceAddress && pricesData[pool.resourceAddress] 
+                ? new Decimal(pricesData[pool.resourceAddress].tokenPriceUSD)
+                : new Decimal(0);
+            
+            const usdValue = loanAmount.mul(tokenPrice);
+            return sum.add(usdValue);
         }, new Decimal(0));
 
         const utilizationRate = totalSupplied.gt(0) ? totalBorrowed.div(totalSupplied) : new Decimal(0);
         const lendingApr = Math.max(...data.map(pool => (pool.rawLendingApr || 0) * 100));
         const borrowingApr = Math.max(...data.map(pool => (pool.borrowingApr || 0) * 100));
-        debugger;
+
         return {
             totalSupplied: formatCurrency(totalSupplied),
             totalBorrowed: formatCurrency(totalBorrowed),
@@ -268,15 +326,18 @@ export const fetchTVLData = async (): Promise<TVLData> => {
         const data: DeFiLlamaResponse = await response.json();
 
         const currentTvl = new Decimal(data.tvl?.at(data.tvl.length - 1)?.totalLiquidityUSD || 125_000_000);
+        const yesterdayTvl = new Decimal(data.tvl?.at(data.tvl.length - 2)?.totalLiquidityUSD || 125_000_000);
 
         return {
             currentTvl: currentTvl.toString(),
+            tvlChange24h: currentTvl.sub(yesterdayTvl).div(yesterdayTvl).mul(100),
         };
     } catch (error) {
         console.error('Error fetching TVL data:', error);
         // Return fallback data as strings
         return {
             currentTvl: '125000000',
+            tvlChange24h: new Decimal!(0)
         };
     }
 };

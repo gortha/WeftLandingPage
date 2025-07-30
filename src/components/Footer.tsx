@@ -60,7 +60,6 @@ const Footer = () => {
       value: isLoadingTVL ? '...' : formatCurrency(tvlData?.currentTvl || '0'), 
       icon: Shield 
     },
-    { label: 'Active Users', value: '0+', icon: Users },
     { label: 'Transactions', value: '150K+', icon: Zap },
     { label: 'Uptime', value: '99.9%', icon: BookOpen }
   ];

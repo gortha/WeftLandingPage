@@ -254,16 +254,12 @@ const PlatformOverview = () => {
           viewport={{ once: true }}
           className="weft-card p-8 rounded-2xl"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold weft-gradient-text mb-2">
                 {isLoadingTVL ? '...' : formatCurrency(tvlData?.currentTvl || '0')}
               </div>
               <div className="text-gray-400">Total Value Locked</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold weft-gradient-text mb-2">0</div>
-              <div className="text-gray-400">Active Users</div>
             </div>
             <div>
               <div className="text-3xl font-bold weft-gradient-text mb-2">150K+</div>

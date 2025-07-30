@@ -11,7 +11,7 @@ const SocialLinks = () => {
     {
       name: 'Twitter',
       description: 'Follow us for the latest updates and announcements',
-      members: '45K+',
+      members: '2K+',
       icon: FaXTwitter,
       color: 'from-blue-400 to-blue-600',
       href: 'https://x.com/weft_finance'
@@ -19,7 +19,7 @@ const SocialLinks = () => {
     {
       name: 'Telegram',
       description: 'Connect with the global Weft Finance community',
-      members: '18K+',
+      members: '1K+',
       icon: FaTelegram,
       color: 'from-blue-500 to-cyan-500',
       href: 'https://t.me/weftfinance'
@@ -27,7 +27,7 @@ const SocialLinks = () => {
     {
       name: 'Medium',
       description: 'Read our latest articles and technical insights',
-      members: '12K+',
+      members: '50+',
       icon: FaMedium,
       color: 'from-gray-600 to-gray-800',
       href: 'https://medium.com/@weft_finance'
@@ -35,7 +35,7 @@ const SocialLinks = () => {
     {
       name: 'GitHub',
       description: 'Explore our open-source code and contribute',
-      members: '2.5K+',
+      members: '10+',
       icon: FaGithub,
       color: 'from-gray-700 to-gray-900',
       href: 'https://github.com/weftfinance'
@@ -43,7 +43,7 @@ const SocialLinks = () => {
     {
       name: 'YouTube',
       description: 'Watch tutorials, AMAs, and educational content',
-      members: '8K+',
+      members: '0+',
       icon: FaYoutube,
       color: 'from-red-500 to-red-600',
       href: 'https://youtube.com/@weftfinance'
@@ -51,7 +51,7 @@ const SocialLinks = () => {
     {
       name: 'Discord',
       description: 'Join our community for real-time discussions and support',
-      members: '25K+',
+      members: '0+',
       icon: FaDiscord,
       color: 'from-indigo-500 to-purple-600',
       href: 'https://discord.gg/weft'

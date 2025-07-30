@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Play, TrendingUp, Shield, Zap, Users, ExternalLink, X, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTVLData, usePoolData, useStakingData } from '@/lib/hooks';
-import { formatCurrency, formatDecimal, formatNumber, isPositive } from '@/lib/utils';
+import { formatCurrency, formatDecimal, formatNumber, formatPercentage, isPositive } from '@/lib/utils';
 
 const Hero = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -186,13 +186,13 @@ const Hero = () => {
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
                     <div className="text-xl font-semibold text-white">Platform Overview</div>
-                    <div className="text-green-400 text-sm font-semibold flex items-center">
+                    <div className={`text-sm font-semibold flex items-center ${isPositive(tvlData?.tvlChange24h) ? 'text-green-400' : 'text-red-400'}`}>
                       {isClient && isLoadingTVL ? (
                         <Loader2 className="w-4 h-4 animate-spin mr-1" />
-                      ) : isClient && tvlData && tvlData.currentTvl && typeof tvlData.currentTvl === 'number' && tvlData.currentTvl !== 0 ? (
-                        `${isPositive(tvlData.currentTvl) ? '+' : ''}${formatDecimal(tvlData.currentTvl, 1)}%`
+                      ) : isClient && tvlData ? (
+                        `${isPositive(tvlData.tvlChange24h) ? '+' : ''}${formatPercentage(tvlData.tvlChange24h)} TVL`
                       ) : (
-                        '+15.2%'
+                        ''
                       )}
                     </div>
                   </div>
@@ -216,7 +216,7 @@ const Hero = () => {
                         ) : null}
                         {isClient && poolData ? poolData.totalBorrowed : '$22,150'}
                       </div>
-                      <div className="text-blue-400 text-sm">↗ {isClient && poolData && poolData.borrowingApr ? poolData.borrowingApr : '3.2%'} APY</div>
+                      <div className="text-blue-400 text-sm">↗ {isClient && poolData && poolData.borrowingApr ? poolData.borrowingApr : '3.2%'} APR</div>
                     </div>
                   </div>
 
