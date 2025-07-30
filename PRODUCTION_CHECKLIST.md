@@ -65,10 +65,10 @@ docker run -p 3000:3000 weft-finance-v2
 ```bash
 # Clean build
 Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue
-npm run build
+pnpm build
 
 # Start production server locally
-npm start
+pnpm start
 ```
 
 ### 2. Vercel CLI Deploy
@@ -79,8 +79,8 @@ vercel login
 # Deploy to production
 vercel --prod
 
-# Or use npm script
-npm run deploy
+# Or use pnpm script
+pnpm deploy
 ```
 
 ### 3. GitHub Integration
@@ -187,16 +187,16 @@ git push origin main
 ### Debug Commands
 ```bash
 # Check build logs
-npm run build --verbose
+pnpm build --verbose
 
 # Analyze bundle size
-npm run analyze
+pnpm analyze
 
 # Run all checks
-npm run lint && npm run type-check
+pnpm lint && pnpm type-check
 
 # Test production build locally
-npm run build && npm start
+pnpm build && pnpm start
 ```
 
 ## �️ Troubleshooting Guide

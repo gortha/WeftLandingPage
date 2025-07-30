@@ -70,10 +70,10 @@ git clone https://github.com/weftfinance/landing-page.git
 cd landing-page
 
 # Install dependencies
-npm install
+pnpm install
 
 # Run development server
-npm run dev
+pnpm dev
 ```
 
 ### Available Scripts
@@ -108,25 +108,25 @@ pnpm clean:all
 pnpm install:clean
 ```
 
-#### npm Scripts
+#### pnpm Scripts
 ```bash
 # Development server with hot reload
-npm run dev
+pnpm dev
 
 # Build for production
-npm run build
+pnpm build
 
 # Start production server
-npm start
+pnpm start
 
 # Run linting
-npm run lint
+pnpm lint
 
 # Fix linting issues
-npm run lint:fix
+pnpm lint:fix
 
 # Run type checking
-npm run type-check
+pnpm type-check
 ```
 
 ### Package Manager Performance Comparison
@@ -151,22 +151,22 @@ npm run type-check
 
 ```bash
 # Development server with hot reload
-npm run dev
+pnpm dev
 
 # Build for production
-npm run build
+pnpm build
 
 # Start production server
-npm start
+pnpm start
 
 # Run linting
-npm run lint
+pnpm lint
 
 # Fix linting issues
-npm run lint:fix
+pnpm lint:fix
 
 # Run type checking
-npm run type-check
+pnpm type-check
 ```
 
 ### Project Structure

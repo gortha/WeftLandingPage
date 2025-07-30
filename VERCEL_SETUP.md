@@ -10,9 +10,9 @@
 No environment variables required for basic deployment.
 
 ### 2. Build Configuration
-- **Build Command**: `npm run build`
+- **Build Command**: `pnpm build`
 - **Output Directory**: `.next`
-- **Install Command**: `npm install`
+- **Install Command**: `pnpm install`
 
 ### 3. Domain Configuration
 - **Custom Domain**: Configure in Vercel dashboard
@@ -72,10 +72,10 @@ git clone https://github.com/your-username/weft-lending-page.git
 cd weft-lending-page
 
 # Install dependencies
-npm install
+pnpm install
 
 # Test locally
-npm run dev
+pnpm dev
 ```
 
 ### Step 2: Vercel Project Setup
@@ -136,16 +136,16 @@ export default function RootLayout({
 ### Debug Commands
 ```bash
 # Check build locally
-npm run build
+pnpm build
 
 # Analyze bundle size
-npm run analyze
+pnpm analyze
 
 # Check for errors
-npm run lint
+pnpm lint
 
 # Type checking
-npm run type-check
+pnpm type-check
 ```
 
 ## � GitHub Actions CI/CD Setup
@@ -174,7 +174,7 @@ To enable automatic deployments via GitHub Actions, you need to configure these 
 ### Getting Organization & Project IDs
 ```bash
 # Install Vercel CLI
-npm install -g vercel
+pnpm add -g vercel
 
 # Login to Vercel
 vercel login
@@ -205,7 +205,7 @@ The `.vercel/project.json` file contains:
 # 1. All secrets are set correctly
 # 2. Vercel project is linked
 # 3. Build passes locally
-npm run build
+pnpm build
 
 # Check Vercel CLI authentication
 vercel whoami

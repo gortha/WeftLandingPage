@@ -39,13 +39,13 @@ VERCEL_PROJECT_ID=your-project-id
 npm ci
 
 # Run development server
-npm run dev
+pnpm dev
 
 # Build for production
-npm run build
+pnpm build
 
 # Start production server
-npm start
+pnpm start
 ```
 
 ## Health Check

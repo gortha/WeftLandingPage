@@ -28,12 +28,12 @@ This is a Next.js 15 TypeScript application for Weft Finance V2 landing page, fe
 
 ### Available Scripts
 ```bash
-npm run dev          # Development with Turbopack
-npm run build        # Production build
-npm run start        # Start production server
-npm run lint         # ESLint checking
-npm run lint:fix     # Auto-fix linting issues
-npm run type-check   # TypeScript validation
+pnpm dev          # Development with Turbopack
+pnpm build        # Production build
+pnpm start        # Start production server
+pnpm lint         # ESLint checking
+pnpm lint:fix     # Auto-fix linting issues
+pnpm type-check   # TypeScript validation
 ```
 
 ### Key Files
