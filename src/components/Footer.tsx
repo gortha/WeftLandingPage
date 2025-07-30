@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowUpRight, Shield, Zap, Users, BookOpen, Link as LinkIcon, BarChart3, Database } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, Shield, Zap, BookOpen, Link as LinkIcon, BarChart3, Database } from 'lucide-react';
 import { FaDiscord, FaXTwitter, FaTelegram, FaMedium, FaGithub } from 'react-icons/fa6';
 import { useTVLData } from '@/lib/hooks';
 import { formatCurrency } from '@/lib/utils';

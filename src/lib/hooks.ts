@@ -1,6 +1,7 @@
 'use client';
 
 import { useQuery, useQueries } from '@tanstack/react-query';
+import Decimal from 'decimal.js';
 import { 
   fetchStakingData, 
   fetchPoolData, 
@@ -106,10 +107,7 @@ export const useTVLData = () => {
     queryFn: fetchTVLData,
     placeholderData: {
       currentTvl: '125000000',
-      chainTvls: { radix: '125000000' },
-      change1d: '15.2',
-      change7d: '8.7',
-      change1m: '23.4',
+      tvlChange24h: new Decimal('0'),
     } as TVLData,
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),

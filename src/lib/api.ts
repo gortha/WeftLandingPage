@@ -49,7 +49,6 @@ export interface AstrolescentTokenPrice {
     name: string;
     tokenPriceXRD: number;
     tokenPriceUSD: number;
-    [key: string]: any; // For other properties we don't need
 }
 
 export interface AstrolescentApiResponse {

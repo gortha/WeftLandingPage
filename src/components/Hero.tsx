@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Play, TrendingUp, Shield, Zap, Users, ExternalLink, X, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTVLData, usePoolData, useStakingData } from '@/lib/hooks';
-import { formatCurrency, formatDecimal, formatNumber, formatPercentage, isPositive } from '@/lib/utils';
+import { formatCurrency, formatNumber, formatPercentage, isPositive } from '@/lib/utils';
 
 const Hero = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
