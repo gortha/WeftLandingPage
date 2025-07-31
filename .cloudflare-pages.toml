@@ -1,0 +1,17 @@
+# Cloudflare Pages Configuration
+
+name = "weft-finance-v2"
+compatibility_date = "2024-07-01"
+
+[build]
+command = "pnpm build"
+cwd = "."
+publish = ".next"
+
+[[env_vars]]
+name = "NODE_VERSION"
+value = "18"
+
+[[env_vars]]
+name = "NEXT_TELEMETRY_DISABLED"
+value = "1"

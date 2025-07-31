@@ -1,23 +1,21 @@
 import { NextResponse } from 'next/server';
 
+// Required for Cloudflare Pages deployment
+export const runtime = 'edge';
+
 export async function GET() {
   try {
-    // Use a more stable timestamp approach
     const now = new Date();
     const healthData = {
       status: 'healthy',
       timestamp: now.toISOString(),
-      uptime: process.uptime(),
-      environment: process.env.NODE_ENV || 'development',
-      version: process.env.npm_package_version || '1.0.0',
-      memory: {
-        used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
-        total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024),
-      },
+      runtime: 'edge',
+      platform: 'cloudflare-pages',
+      version: '0.1.0',
       checks: {
         server: 'ok',
-        database: 'ok', // Add actual database check if needed
-        external_apis: 'ok', // Add actual external API checks if needed
+        edge_runtime: 'ok',
+        api_endpoint: 'ok',
       }
     };
 

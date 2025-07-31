@@ -1,0 +1,9 @@
+name = "weft-finance-v2"
+compatibility_date = "2024-07-01"
+compatibility_flags = []
+
+[functions]
+  "/api/*" = {
+    compatibility_date = "2024-07-01",
+    compatibility_flags = []
+  }
