@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
+import Web3LendingShowcase from '@/components/Web3LendingShowcase';
 import PlatformOverview from '@/components/PlatformOverview';
 import StakingSection from '@/components/StakingSection';
 import BuyWeftSection from '@/components/BuyWeftSection';
@@ -25,6 +26,7 @@ export default function Home() {
         <main>
           <Hero />
           <Features />
+          <Web3LendingShowcase />
           <PlatformOverview />
           <StakingSection />
           <BuyWeftSection />

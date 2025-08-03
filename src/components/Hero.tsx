@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Play, TrendingUp, Shield, Zap, Users, ExternalLink, X, Loader2 } from 'lucide-react';
+import { ArrowRight, Play, TrendingUp, Shield, Zap, Users, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTVLData, usePoolData, useStakingData } from '@/lib/hooks';
 import { formatCurrency, formatNumber, formatPercentage, isPositive } from '@/lib/utils';
+import Web3DemoModal from './Web3DemoModal';
 
 const Hero = () => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
   // Fetch dynamic data from store
@@ -131,11 +132,11 @@ const Hero = () => {
                 <ArrowRight className="w-5 h-5 flex-shrink-0" />
               </Link>
               <button
-                onClick={() => setIsVideoPlaying(true)}
+                onClick={() => setIsDemoOpen(true)}
                 className="weft-btn-secondary flex items-center justify-center space-x-2 text-lg px-6 sm:px-8 py-4 w-full sm:w-auto min-w-0 sm:min-w-[180px]"
               >
                 <Play className="w-5 h-5 flex-shrink-0" />
-                <span>Watch Demo</span>
+                <span>Interactive Demo</span>
               </button>
             </motion.div>
 
@@ -263,40 +264,11 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
-      {isVideoPlaying && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setIsVideoPlaying(false)}
-        >
-          <div className="relative w-full max-w-4xl aspect-video bg-gray-900 rounded-lg overflow-hidden">
-            <button
-              onClick={() => setIsVideoPlaying(false)}
-              className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <div className="flex items-center justify-center h-full">
-              <div className="text-center">
-                <Play className="w-16 h-16 text-blue-500 mx-auto mb-4" />
-                <p className="text-white text-xl mb-2">Platform Demo Video</p>
-                <p className="text-gray-400">Coming soon - Interactive demo available</p>
-                <Link
-                  href="https://app.weft.finance/market"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="weft-btn-primary mt-4 inline-flex items-center space-x-2"
-                >
-                  <span>Try Live Demo</span>
-                  <ExternalLink className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
+      {/* Web3 Demo Modal */}
+      <Web3DemoModal 
+        isOpen={isDemoOpen} 
+        onClose={() => setIsDemoOpen(false)} 
+      />
     </section>
   );
 };

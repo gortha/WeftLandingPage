@@ -133,12 +133,12 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => renderNavItem(item, false))}
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <Link
               href="https://app.weft.finance"
               target="_blank"
@@ -157,7 +157,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -173,14 +173,14 @@ const Header = () => {
           <>
             {/* Overlay to close menu when clicking outside */}
             <div 
-              className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               onClick={() => setIsMenuOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 shadow-xl z-50"
+              className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 shadow-xl z-50"
             >
               <nav className="flex flex-col space-y-2 py-4 px-4">
                 {navigation.map((item) => renderNavItem(item, true))}
@@ -188,11 +188,11 @@ const Header = () => {
                   href="https://app.weft.finance/market"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="weft-btn-primary flex items-center justify-center space-x-2 mt-4"
+                  className="flex items-center justify-center space-x-2 mt-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-lg transition-all duration-300 hover:transform hover:scale-105 whitespace-nowrap px-6 py-3 text-sm md:text-base md:px-8"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <span>Launch App</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4 flex-shrink-0" />
                 </Link>
               </nav>
             </motion.div>
