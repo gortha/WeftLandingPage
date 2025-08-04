@@ -179,26 +179,28 @@ const Features = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="weft-card p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Ready to Experience Weft Finance V2?</h3>
-            <p className="text-gray-300 mb-6">
+          <div className="weft-card p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">Ready to Experience Weft Finance V2?</h3>
+            <p className="text-gray-300 mb-6 text-sm sm:text-base">
               Join the advanced DeFi lending platform with NFT-based CDPs, isolation mode, and cutting-edge features built on Radix DLT.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
               <a
                 href="https://app.weft.finance/market"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] py-3 text-sm sm:text-base"
               >
-                <span>Start Trading</span>
+                <span className="hidden sm:inline">Start Trading</span>
+                <span className="sm:hidden">Trade</span>
                 <ArrowRight className="w-4 h-4 flex-shrink-0" />
               </a>
               <a
                 href="#platform"
-                className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] py-3 text-sm sm:text-base"
               >
-                <span>Learn More</span>
+                <span className="hidden sm:inline">Learn More</span>
+                <span className="sm:hidden">Learn</span>
                 <ArrowRight className="w-4 h-4 flex-shrink-0" />
               </a>
             </div>

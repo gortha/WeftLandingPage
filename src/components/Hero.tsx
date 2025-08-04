@@ -120,23 +120,25 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 max-w-md sm:max-w-none mx-auto lg:mx-0"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-12 max-w-md sm:max-w-none mx-auto lg:mx-0"
             >
               <Link
                 href="https://app.weft.finance"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="weft-btn-primary flex items-center justify-center space-x-2 text-lg px-6 sm:px-8 py-4 w-full sm:w-auto min-w-0 sm:min-w-[180px]"
+                className="weft-btn-primary flex items-center justify-center space-x-2 text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 sm:py-4 w-full sm:w-auto min-w-0 sm:min-w-[160px] lg:min-w-[180px]"
               >
-                <span>Launch Platform</span>
-                <ArrowRight className="w-5 h-5 flex-shrink-0" />
+                <span className="hidden sm:inline">Launch Platform</span>
+                <span className="sm:hidden">Launch</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
               </Link>
               <button
                 onClick={() => setIsDemoOpen(true)}
-                className="weft-btn-secondary flex items-center justify-center space-x-2 text-lg px-6 sm:px-8 py-4 w-full sm:w-auto min-w-0 sm:min-w-[180px]"
+                className="weft-btn-secondary flex items-center justify-center space-x-2 text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 sm:py-4 w-full sm:w-auto min-w-0 sm:min-w-[160px] lg:min-w-[180px]"
               >
-                <Play className="w-5 h-5 flex-shrink-0" />
-                <span>Interactive Demo</span>
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="hidden sm:inline">Interactive Demo</span>
+                <span className="sm:hidden">Demo</span>
               </button>
             </motion.div>
 
@@ -145,7 +147,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto lg:mx-0"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto lg:mx-0"
             >
               {stats.map((stat, index) => (
                 <motion.div
@@ -155,16 +157,16 @@ const Hero = () => {
                   transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="weft-card p-3 md:p-4 mb-2">
-                    <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 weft-gradient rounded-full mx-auto mb-2 md:mb-3">
+                  <div className="weft-card p-2 sm:p-3 md:p-4 mb-2">
+                    <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 weft-gradient rounded-full mx-auto mb-1 sm:mb-2 md:mb-3">
                       {stat.isLoading ? (
-                        <Loader2 className="w-5 h-5 md:w-6 md:h-6 text-white animate-spin" />
+                        <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white animate-spin" />
                       ) : (
-                        <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                        <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
                       )}
                     </div>
-                    <div className="text-xl md:text-2xl font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-xs md:text-sm text-gray-400">{stat.label}</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
                   </div>
                 </motion.div>
               ))}
@@ -183,13 +185,13 @@ const Hero = () => {
               <div className="absolute inset-0 weft-gradient rounded-3xl blur-3xl opacity-20 animate-pulse-custom"></div>
               
               {/* Main Card */}
-              <div className="relative weft-card p-8 rounded-3xl">
-                <div className="space-y-6">
+              <div className="relative weft-card p-4 sm:p-6 lg:p-8 rounded-3xl">
+                <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="text-xl font-semibold text-white">Platform Overview</div>
-                    <div className={`text-sm font-semibold flex items-center ${isPositive(tvlData?.tvlChange24h) ? 'text-green-400' : 'text-red-400'}`}>
+                    <div className="text-lg sm:text-xl font-semibold text-white">Platform Overview</div>
+                    <div className={`text-xs sm:text-sm font-semibold flex items-center ${isPositive(tvlData?.tvlChange24h) ? 'text-green-400' : 'text-red-400'}`}>
                       {isClient && isLoadingTVL ? (
-                        <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                        <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin mr-1" />
                       ) : isClient && tvlData ? (
                         `${isPositive(tvlData.tvlChange24h) ? '+' : ''}${formatPercentage(tvlData.tvlChange24h)} TVL`
                       ) : (
@@ -198,35 +200,39 @@ const Hero = () => {
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                      <div className="text-sm text-gray-400 mb-1">Total Supplied</div>
-                      <div className="text-2xl font-bold text-white flex items-center">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="bg-white/5 p-3 sm:p-4 rounded-xl border border-white/10">
+                      <div className="text-xs sm:text-sm text-gray-400 mb-1">Total Supplied</div>
+                      <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white flex items-center">
                         {isClient && isLoadingPool ? (
-                          <Loader2 className="w-6 h-6 animate-spin mr-2" />
+                          <Loader2 className="w-4 h-4 sm:w-6 sm:h-6 animate-spin mr-2" />
                         ) : null}
-                        {isClient && poolData ? poolData.totalSupplied : '$45,230'}
+                        <span className="text-sm sm:text-lg lg:text-2xl">
+                          {isClient && poolData ? poolData.totalSupplied : '$45,230'}
+                        </span>
                       </div>
-                      <div className="text-green-400 text-sm">↗ {isClient && poolData && poolData.lendingApr ? poolData.lendingApr : '8.5%'} APR</div>
+                      <div className="text-green-400 text-xs sm:text-sm">↗ {isClient && poolData && poolData.lendingApr ? poolData.lendingApr : '8.5%'} APR</div>
                     </div>
-                    <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                      <div className="text-sm text-gray-400 mb-1">Total Borrowed</div>
-                      <div className="text-2xl font-bold text-white flex items-center">
+                    <div className="bg-white/5 p-3 sm:p-4 rounded-xl border border-white/10">
+                      <div className="text-xs sm:text-sm text-gray-400 mb-1">Total Borrowed</div>
+                      <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white flex items-center">
                         {isClient && isLoadingPool ? (
-                          <Loader2 className="w-6 h-6 animate-spin mr-2" />
+                          <Loader2 className="w-4 h-4 sm:w-6 sm:h-6 animate-spin mr-2" />
                         ) : null}
-                        {isClient && poolData ? poolData.totalBorrowed : '$22,150'}
+                        <span className="text-sm sm:text-lg lg:text-2xl">
+                          {isClient && poolData ? poolData.totalBorrowed : '$22,150'}
+                        </span>
                       </div>
-                      <div className="text-blue-400 text-sm">↗ {isClient && poolData && poolData.borrowingApr ? poolData.borrowingApr : '3.2%'} APR</div>
+                      <div className="text-blue-400 text-xs sm:text-sm">↗ {isClient && poolData && poolData.borrowingApr ? poolData.borrowingApr : '3.2%'} APR</div>
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">Total Value Locked</span>
-                      <span className="text-green-400 font-semibold flex items-center">
+                      <span className="text-xs sm:text-sm text-gray-400">Total Value Locked</span>
+                      <span className="text-green-400 font-semibold flex items-center text-xs sm:text-sm">
                         {isClient && isLoadingTVL ? (
-                          <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                          <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin mr-1" />
                         ) : null}
                         {isClient && tvlData && tvlData.currentTvl ? formatCurrency(tvlData.currentTvl) : '$2.1B'}
                       </span>
@@ -237,11 +243,12 @@ const Hero = () => {
                     <div className="text-xs text-gray-500">Platform growth: Strong</div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
-                    <Link href="https://app.weft.finance/market/lending" target="_blank" className="weft-btn-primary flex items-center justify-center py-2 md:py-3 text-xs md:text-sm">
-                      Supply More
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                    <Link href="https://app.weft.finance/market/lending" target="_blank" className="weft-btn-primary flex items-center justify-center py-2 sm:py-3 text-xs sm:text-sm">
+                      <span className="hidden sm:inline">Supply More</span>
+                      <span className="sm:hidden">Supply</span>
                     </Link>
-                    <Link href="https://app.weft.finance/market/borrowing?tab=collateral" target="_blank" className="weft-btn-secondary flex items-center justify-center py-2 md:py-3 text-xs md:text-sm">
+                    <Link href="https://app.weft.finance/market/borrowing?tab=collateral" target="_blank" className="weft-btn-secondary flex items-center justify-center py-2 sm:py-3 text-xs sm:text-sm">
                       Borrow
                     </Link>
                   </div>

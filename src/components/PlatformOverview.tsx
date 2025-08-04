@@ -116,19 +116,26 @@ const PlatformOverview = () => {
 
         {/* Platform Features Tabs */}
         <div className="mb-16">
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mb-8">
             {platformFeatures.map((feature) => (
               <button
                 key={feature.id}
                 onClick={() => setActiveDemo(feature.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                className={`flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-xs sm:text-sm lg:text-base ${
                   activeDemo === feature.id
                     ? 'weft-gradient text-white'
                     : 'weft-card text-gray-300 hover:bg-white/10'
                 }`}
               >
-                <feature.icon className="w-5 h-5" />
-                <span>{feature.title}</span>
+                <feature.icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">{feature.title}</span>
+                <span className="sm:hidden">
+                  {feature.title.includes('Wefties') ? 'Wefties' :
+                   feature.title.includes('Isolation') ? 'Isolation' :
+                   feature.title.includes('Efficiency') ? 'Efficiency' :
+                   feature.title.includes('Collateral') ? 'Collateral' :
+                   feature.title}
+                </span>
               </button>
             ))}
           </div>
@@ -162,14 +169,15 @@ const PlatformOverview = () => {
                   ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 max-w-md sm:max-w-none mx-auto">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
                   <a
                     href="https://app.weft.finance/market"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px]"
+                    className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[120px] lg:min-w-[140px] py-3 text-sm sm:text-base"
                   >
-                    <span>Try It Now</span>
+                    <span className="hidden sm:inline">Try It Now</span>
+                    <span className="sm:hidden">Try Now</span>
                     <ArrowRight className="w-4 h-4 flex-shrink-0" />
                   </a>
                 </div>

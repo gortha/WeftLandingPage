@@ -239,9 +239,10 @@ const RadixIntegration = () => {
               href="https://www.radixdlt.com/full-stack"
               target="_blank"
               rel="noopener noreferrer"
-              className="weft-btn-primary flex items-center space-x-2 w-fit"
+              className="weft-btn-primary flex items-center space-x-2 w-fit px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base"
             >
-              <span>Learn More About Radix</span>
+              <span className="hidden sm:inline">Learn More About Radix</span>
+              <span className="sm:hidden">Learn Radix</span>
               <ExternalLink className="w-4 h-4" />
             </Link>
           </div>
@@ -320,31 +321,33 @@ const RadixIntegration = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="weft-card p-8 max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold mb-4">
+          <div className="weft-card p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
               Experience <span className="text-cyan-400">Radix-Powered</span> DeFi
             </h3>
-            <p className="text-gray-300 mb-6 text-lg">
+            <p className="text-gray-300 mb-6 text-sm sm:text-base lg:text-lg">
               Join the future of decentralized finance with enterprise-grade security,
               unlimited scalability, and intuitive user experience.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
               <Link
                 href="https://app.weft.finance/market"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] py-3 text-sm sm:text-base"
               >
-                <span>Launch on Radix</span>
+                <span className="hidden sm:inline">Launch on Radix</span>
+                <span className="sm:hidden">Launch</span>
                 <ArrowRight className="w-4 h-4 flex-shrink-0" />
               </Link>
               <Link
                 href="https://www.radixdlt.com/full-stack"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] py-3 text-sm sm:text-base"
               >
-                <span>Explore Radix</span>
+                <span className="hidden sm:inline">Explore Radix</span>
+                <span className="sm:hidden">Explore</span>
                 <ExternalLink className="w-4 h-4 flex-shrink-0" />
               </Link>
             </div>

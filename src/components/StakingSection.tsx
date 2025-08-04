@@ -90,19 +90,19 @@ const StakingSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6">
             <span className="weft-gradient-text">WEFT Token</span> Staking & Governance
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto px-4">
             Stake your WEFT tokens to earn rewards, participate in protocol governance, and unlock 
             exclusive benefits in the Weft Finance V2 ecosystem built on Radix DLT.
           </p>
         </motion.div>
 
         {/* Staking Features */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16 lg:mb-20">
           {stakingFeatures.map((feature, index) => (
             <motion.div
               key={index}
@@ -110,11 +110,11 @@ const StakingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group weft-card p-8 text-center hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/20"
+              className="group weft-card p-6 lg:p-8 text-center hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/20"
             >
-              <div className="relative mb-6">
+              <div className="relative mb-4 lg:mb-6">
                 <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                <div className={`relative inline-flex items-center justify-center w-20 h-20 ${feature.customIcon && feature.title === 'Wefties NFT Rewards' ? 'rounded-2xl overflow-hidden shadow-lg' : `bg-gradient-to-r ${feature.color} rounded-2xl shadow-lg`}`}>
+                <div className={`relative inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 ${feature.customIcon && feature.title === 'Wefties NFT Rewards' ? 'rounded-2xl overflow-hidden shadow-lg' : `bg-gradient-to-r ${feature.color} rounded-2xl shadow-lg`}`}>
                   {feature.customIcon && feature.title === 'Wefties NFT Rewards' ? (
                     <Image
                       src="/assets/images/wefty.png"
@@ -124,13 +124,13 @@ const StakingSection = () => {
                       className="object-cover w-full h-full rounded-2xl"
                     />
                   ) : (
-                    <feature.icon className="w-10 h-10 text-white" />
+                    <feature.icon className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
                   )}
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-green-400 transition-colors duration-300">{feature.title}</h3>
-              <p className="text-gray-400 text-base mb-6 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">{feature.description}</p>
-              <div className="text-xl font-bold weft-gradient-text">{feature.value}</div>
+              <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 group-hover:text-green-400 transition-colors duration-300">{feature.title}</h3>
+              <p className="text-gray-400 text-sm lg:text-base mb-4 lg:mb-6 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">{feature.description}</p>
+              <div className="text-lg lg:text-xl font-bold weft-gradient-text">{feature.value}</div>
             </motion.div>
           ))}
         </div>
@@ -207,23 +207,25 @@ const StakingSection = () => {
               )}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md sm:max-w-none mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
               <Link
                 href="https://token.weft.finance"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                className="weft-btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] py-3 text-sm sm:text-base"
               >
-                <span>Stake & Claim</span>
+                <span className="hidden sm:inline">Stake & Claim</span>
+                <span className="sm:hidden">Stake</span>
                 <ExternalLink className="w-4 h-4 flex-shrink-0" />
               </Link>
               <Link 
                 href="https://docs.v2.weft.finance/token#token-circulation-strategy"
                 target="_blank"
                 rel="noopener noreferrer" 
-                className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                className="weft-btn-secondary flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] py-3 text-sm sm:text-base"
               >
-                <span>View Tokenomics</span>
+                <span className="hidden sm:inline">View Tokenomics</span>
+                <span className="sm:hidden">Tokenomics</span>
                 <ArrowRight className="w-4 h-4 flex-shrink-0" />
               </Link>
             </div>

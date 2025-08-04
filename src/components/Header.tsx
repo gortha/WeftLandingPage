@@ -143,10 +143,11 @@ const Header = () => {
               href="https://app.weft.finance"
               target="_blank"
               rel="noopener noreferrer"
-              className="weft-btn-primary flex items-center space-x-2 relative group overflow-hidden"
+              className="weft-btn-primary flex items-center space-x-2 relative group overflow-hidden px-4 xl:px-6 py-2 xl:py-3 text-sm xl:text-base"
             >
-              <span className="relative z-10">Launch App</span>
-              <ExternalLink className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+              <span className="relative z-10 hidden xl:inline">Launch App</span>
+              <span className="relative z-10 xl:hidden">Launch</span>
+              <ExternalLink className="w-3 h-3 xl:w-4 xl:h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
               
               {/* Enhanced button glow on hover - only on client */}
               {isClient && (
@@ -188,10 +189,11 @@ const Header = () => {
                   href="https://app.weft.finance/market"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center space-x-2 mt-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-lg transition-all duration-300 hover:transform hover:scale-105 whitespace-nowrap px-6 py-3 text-sm md:text-base md:px-8"
+                  className="flex items-center justify-center space-x-2 mt-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-lg transition-all duration-300 hover:transform hover:scale-105 whitespace-nowrap px-4 sm:px-6 py-3 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <span>Launch App</span>
+                  <span className="hidden sm:inline">Launch App</span>
+                  <span className="sm:hidden">Launch</span>
                   <ExternalLink className="w-4 h-4 flex-shrink-0" />
                 </Link>
               </nav>

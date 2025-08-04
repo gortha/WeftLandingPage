@@ -106,23 +106,25 @@ const Footer = () => {
                   scalable, and user-friendly lending, borrowing, and staking solutions.
                 </p>
 
-                <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8 max-w-md sm:max-w-none">
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-8 max-w-md sm:max-w-none">
                   <Link
                     href="https://app.weft.finance/market"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="weft-btn-primary px-6 py-3 flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                    className="weft-btn-primary px-4 sm:px-6 py-3 flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] text-sm sm:text-base"
                   >
-                    <span>Launch App</span>
+                    <span className="hidden sm:inline">Launch App</span>
+                    <span className="sm:hidden">Launch</span>
                     <ArrowUpRight className="w-4 h-4 flex-shrink-0" />
                   </Link>
                   <Link
                     href="https://token.weft.finance"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="weft-btn-secondary px-6 py-3 flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[160px]"
+                    className="weft-btn-secondary px-4 sm:px-6 py-3 flex items-center justify-center space-x-2 w-full sm:w-auto min-w-0 sm:min-w-[140px] lg:min-w-[160px] text-sm sm:text-base"
                   >
-                    <span>Stake WEFT</span>
+                    <span className="hidden sm:inline">Stake WEFT</span>
+                    <span className="sm:hidden">Stake</span>
                     <ExternalLink className="w-4 h-4 flex-shrink-0" />
                   </Link>
                 </div>

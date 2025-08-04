@@ -144,9 +144,9 @@ const BuyWeftSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-400 to-purple-500 rounded-3xl mb-6 shadow-2xl">
+          <div className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-r from-green-400 to-purple-500 rounded-3xl mb-4 lg:mb-6 shadow-2xl">
             <Image
               src="/assets/images/weft-token.png"
               alt="Weft Token"
@@ -156,7 +156,7 @@ const BuyWeftSection = () => {
             />
           </div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 lg:mb-6">
             Buy <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-500">$WEFT</span>
           </h2>
           
