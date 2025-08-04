@@ -157,31 +157,32 @@ const Web3LendingShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6">
               Weft Finance <span className="weft-gradient-text">App Flows</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               Experience the actual Weft Finance V2 application flows for lending XRD in pools 
               and borrowing assets with XRD collateral. Connect with Radix wallet and start earning or borrowing.
             </p>
 
             {/* Flow Toggle */}
-            <div className="inline-flex items-center bg-black/40 backdrop-blur-sm border border-white/10 rounded-full p-1 mb-8">
+            <div className="inline-flex items-center bg-black/40 backdrop-blur-sm border border-white/10 rounded-full p-1 mb-6 sm:mb-8">
               <button
                 onClick={() => {
                   setActiveFlow('lending');
                   setCurrentStep(0);
                   setIsPlaying(false);
                 }}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm lg:text-base ${
                   activeFlow === 'lending'
                     ? 'bg-gradient-to-r from-[#5afbc4] to-[#4dd0a7] text-black shadow-lg font-bold'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
-                XRD Pool Lending
+                <span className="hidden sm:inline">XRD Pool Lending</span>
+                <span className="sm:hidden">Lending</span>
               </button>
               <button
                 onClick={() => {
@@ -189,13 +190,14 @@ const Web3LendingShowcase = () => {
                   setCurrentStep(0);
                   setIsPlaying(false);
                 }}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm lg:text-base ${
                   activeFlow === 'borrowing'
                     ? 'bg-gradient-to-r from-[#00e0ff] to-[#00b8cc] text-black shadow-lg font-bold'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
-                CDP Borrowing
+                <span className="hidden sm:inline">CDP Borrowing</span>
+                <span className="sm:hidden">Borrowing</span>
               </button>
             </div>
           </motion.div>
@@ -245,7 +247,7 @@ const Web3LendingShowcase = () => {
 
         <div className="max-w-6xl mx-auto">
           {/* Main Flow Visualization */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Flow Steps */}
             {mounted ? (
               <motion.div
@@ -399,30 +401,30 @@ const Web3LendingShowcase = () => {
                 transition={{ duration: 0.5 }}
                 className="relative"
               >
-                <div className="weft-card p-8 text-center">
-                  <div className="mb-6">
+                <div className="weft-card p-6 sm:p-8 text-center">
+                  <div className="mb-4 sm:mb-6">
                     {activeFlow === 'lending' ? (
-                      <div className="relative w-20 h-20 mx-auto mb-4">
+                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4">
                         <XRDIcon 
                           size={80} 
-                          className="w-20 h-20  hover:shadow-xl hover:shadow-[#5afbc4]/30 transition-all duration-300" 
+                          className="w-16 h-16 sm:w-20 sm:h-20  hover:shadow-xl hover:shadow-[#5afbc4]/30 transition-all duration-300" 
                         />
                         <div className="absolute inset-0 pointer-events-none"></div>
                       </div>
                     ) : (
-                      <div className="relative w-20 h-20 mx-auto mb-4">
+                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4">
                         <Image
                           src="/assets/images/wefty.png"
                           alt="Wefty CDP NFT"
                           width={80}
                           height={80}
-                          className="w-20 h-20 object-cover hover:shadow-xl hover:shadow-[#00e0ff]/30 transition-all duration-300"
+                          className="w-16 h-16 sm:w-20 sm:h-20 object-cover hover:shadow-xl hover:shadow-[#00e0ff]/30 transition-all duration-300"
                         />
                         <div className="absolute inset-0 pointer-events-none"></div>
                       </div>
                     )}
                     <div className="flex items-center justify-center space-x-2 mb-2">
-                      <h3 className="text-2xl font-bold">
+                      <h3 className="text-lg sm:text-2xl font-bold">
                         {activeFlow === 'lending' ? 'XRD Pool Position' : 'Wefty CDP Position'}
                       </h3>
                       {activeFlow === 'borrowing' && (
@@ -431,7 +433,7 @@ const Web3LendingShowcase = () => {
                         </div>
                       )}
                     </div>
-                    <p className="text-gray-400">
+                    <p className="text-gray-400 text-sm sm:text-base">
                       {activeFlow === 'lending' 
                         ? 'Your XRD lending position in the pool earning yield'
                         : 'Your Wefty CDP with collateral and health monitoring'
@@ -621,61 +623,65 @@ const Web3LendingShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
               viewport={{ once: true }}
-              className="text-center mt-16"
+              className="text-center mt-12 sm:mt-16"
             >
-              <div className="max-w-2xl mx-auto">
-                <h3 className="text-2xl font-bold mb-4">Ready to Start on Weft Finance?</h3>
-                <p className="text-gray-300 mb-6">
+              <div className="max-w-2xl mx-auto px-4">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Ready to Start on Weft Finance?</h3>
+                <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                   Connect your Radix wallet and experience seamless lending in XRD pools or 
                   borrowing against XRD collateral with real-time health factor monitoring.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <a
                     href="https://app.weft.finance/market/lending"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="weft-btn-primary flex items-center justify-center space-x-2"
+                    className="weft-btn-primary flex items-center justify-center space-x-2 py-3 text-sm sm:text-base"
                   >
-                    <span>Start Lending</span>
+                    <span className="hidden sm:inline">Start Lending</span>
+                    <span className="sm:hidden">Lend</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <a
                     href="https://app.weft.finance/market/borrowing?tab=collateral"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="weft-btn-secondary flex items-center justify-center space-x-2"
+                    className="weft-btn-secondary flex items-center justify-center space-x-2 py-3 text-sm sm:text-base"
                   >
-                    <span>Start Borrowing</span>
+                    <span className="hidden sm:inline">Start Borrowing</span>
+                    <span className="sm:hidden">Borrow</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
               </div>
             </motion.div>
           ) : (
-            <div className="text-center mt-16">
-              <div className="max-w-2xl mx-auto">
-                <h3 className="text-2xl font-bold mb-4">Ready to Start on Weft Finance?</h3>
-                <p className="text-gray-300 mb-6">
+            <div className="text-center mt-12 sm:mt-16">
+              <div className="max-w-2xl mx-auto px-4">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Ready to Start on Weft Finance?</h3>
+                <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                   Connect your Radix wallet and experience seamless lending in XRD pools or 
                   borrowing against XRD collateral with real-time health factor monitoring.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <a
                     href="https://app.weft.finance/market/lending"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="weft-btn-primary flex items-center justify-center space-x-2"
+                    className="weft-btn-primary flex items-center justify-center space-x-2 py-3 text-sm sm:text-base"
                   >
-                    <span>Start Lending</span>
+                    <span className="hidden sm:inline">Start Lending</span>
+                    <span className="sm:hidden">Lend</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <a
                     href="https://app.weft.finance/market/borrowing?tab=collateral"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="weft-btn-secondary flex items-center justify-center space-x-2"
+                    className="weft-btn-secondary flex items-center justify-center space-x-2 py-3 text-sm sm:text-base"
                   >
-                    <span>Start Borrowing</span>
+                    <span className="hidden sm:inline">Start Borrowing</span>
+                    <span className="sm:hidden">Borrow</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
